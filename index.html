@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>David Quayartey | Cloud & DevOps Engineer</title>
+  <!-- Google Fonts & FontAwesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --bg: #07090e;
+      --card-bg: rgba(18, 22, 32, 0.65);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent-cyan: #64ffda;
+      --accent-blue: #3b82f6;
+      --accent-purple: #a855f7;
+      --terminal-bg: #0d1117;
+      --font-sans: 'Inter', -apple-system, sans-serif;
+      --font-mono: 'Fira Code', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(100, 255, 218, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 85% 60%, rgba(59, 130, 246, 0.05) 0%, transparent 40%);
+      background-attachment: fixed;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+    /* Sticky Glass Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(7, 9, 14, 0.75);
+      border-bottom: 1px solid var(--card-border);
+      padding: 1.2rem 0;
+    }
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--accent-cyan);
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent-cyan); }
+
+    /* Hero Section */
+    .hero {
+      padding: 6rem 0 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding: 3rem 0; }
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(100, 255, 218, 0.08);
+      border: 1px solid rgba(100, 255, 218, 0.2);
+      color: var(--accent-cyan);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-family: var(--font-mono);
+      margin-bottom: 1.5rem;
+    }
+    .status-dot {
+      width: 8px; height: 8px;
+      background-color: var(--accent-cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-cyan);
+    }
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.8rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: var(--accent-cyan);
+      color: var(--bg);
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--card-border);
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      transform: translateY(-2px);
+    }
+
+    /* Embedded Terminal Feature */
+    .terminal-card {
+      background: var(--terminal-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+      font-family: var(--font-mono);
+    }
+    .terminal-header {
+      background: rgba(255, 255, 255, 0.03);
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .term-btn { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+    .term-close { background: #ff5f56; }
+    .term-min { background: #ffbd2e; }
+    .term-max { background: #27c93f; }
+    .term-title {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .terminal-body {
+      padding: 1.25rem;
+      height: 280px;
+      overflow-y: auto;
+      font-size: 0.85rem;
+    }
+    .term-line { margin-bottom: 0.5rem; }
+    .term-prompt { color: var(--accent-cyan); }
+    .term-cmd { color: #fff; }
+    .term-output { color: var(--text-muted); padding-left: 1rem; white-space: pre-line; }
+    .terminal-input-line { display: flex; align-items: center; gap: 0.5rem; }
+    .terminal-input {
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      width: 100%;
+    }
+
+    /* Sections Shared Styling */
+    section { padding: 5rem 0; }
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--card-border);
+    }
+
+    /* Tech Stack Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1.2rem;
+    }
+    .skill-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      padding: 1.25rem;
+      border-radius: 10px;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .skill-card:hover {
+      border-color: var(--accent-cyan);
+      transform: translateY(-4px);
+    }
+    .skill-card i { font-size: 2rem; color: var(--accent-cyan); margin-bottom: 0.5rem; }
+    .skill-card h4 { font-size: 0.9rem; font-weight: 600; }
+
+    /* Projects Cards */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2rem;
+    }
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s;
+    }
+    .project-card:hover {
+      border-color: var(--accent-cyan);
+      transform: translateY(-5px);
+    }
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .folder-icon { font-size: 1.8rem; color: var(--accent-cyan); }
+    .project-links a {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      margin-left: 0.8rem;
+      transition: color 0.2s;
+    }
+    .project-links a:hover { color: var(--accent-cyan); }
+    .project-card h3 { font-size: 1.3rem; margin-bottom: 0.75rem; }
+    .project-card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+    .tag-list { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent-cyan);
+      background: rgba(100, 255, 218, 0.08);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    /* Architecture / Philosophy Card */
+    .arch-box {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(100, 255, 218, 0.05));
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 2.5rem;
+      margin-top: 3rem;
+    }
+    .arch-box h3 { font-size: 1.4rem; margin-bottom: 1rem; color: #fff; }
+    .arch-box p { color: var(--text-muted); line-height: 1.8; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 3rem 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 1rem; }
+    .social-links a { color: var(--text-muted); font-size: 1.3rem; transition: color 0.2s; }
+    .social-links a:hover { color: var(--accent-cyan); }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Glass Nav -->
+  <nav>
+    <div class="container nav-inner">
+      <a href="#" class="logo">&lt;DQ /&gt;</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#terminal">Terminal</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="container">
+    <section class="hero">
+      <div>
+        <div class="hero-badge">
+          <span class="status-dot"></span> Available for Cloud & DevOps Roles
+        </div>
+        <h1>David <span class="gradient-text">Quayartey</span></h1>
+        <p>Cloud & DevOps Engineer specializing in serverless cloud architectures, automated zero-trust OIDC CI/CD pipelines, and infrastructure as code.</p>
+        <div class="hero-btns">
+          <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-rocket"></i> View Projects</a>
+          <a href="mailto:quayarteydave@gmail.com" class="btn btn-secondary"><i class="fa-solid fa-envelope"></i> Contact Me</a>
+        </div>
+      </div>
+
+      <!-- Interactive Embedded Terminal -->
+      <div class="terminal-card" id="terminal">
+        <div class="terminal-header">
+          <span class="term-btn term-close"></span>
+          <span class="term-btn term-min"></span>
+          <span class="term-btn term-max"></span>
+          <span class="term-title">bash - dq-cloud-shell</span>
+        </div>
+        <div class="terminal-body" id="term-body">
+          <div class="term-line">
+            <span class="term-prompt">visitor@quayartey:~$</span> <span class="term-cmd">help</span>
+          </div>
+          <div class="term-output">Available commands: whoami, skills, projects, clear</div>
+        </div>
+        <div class="terminal-header" style="border-top: 1px solid var(--card-border); border-bottom: none;">
+          <div class="terminal-input-line">
+            <span class="term-prompt">visitor@quayartey:~$</span>
+            <input type="text" class="terminal-input" id="term-input" autofocus placeholder="type 'whoami' or 'projects'..." />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+      <h2 class="section-title"><span>01.</span> Technical Toolkit</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <i class="fa-brands fa-aws"></i>
+          <h4>AWS Cloud</h4>
+        </div>
+        <div class="skill-card">
+          <i class="fa-solid fa-code-branch"></i>
+          <h4>AWS SAM / IaC</h4>
+        </div>
+        <div class="skill-card">
+          <i class="fa-brands fa-github"></i>
+          <h4>GitHub Actions</h4>
+        </div>
+        <div class="skill-card">
+          <i class="fa-solid fa-database"></i>
+          <h4>DynamoDB</h4>
+        </div>
+        <div class="skill-card">
+          <i class="fa-brands fa-python"></i>
+          <h4>Python</h4>
+        </div>
+        <div class="skill-card">
+          <i class="fa-solid fa-shield-halved"></i>
+          <h4>OIDC / Security</h4>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Projects Section -->
+    <section id="projects">
+      <h2 class="section-title"><span>02.</span> Featured Work</h2>
+      <div class="projects-grid">
+        
+        <!-- CampusAI -->
+        <div class="project-card">
+          <div>
+            <div class="project-header">
+              <i class="fa-regular fa-folder-closed folder-icon"></i>
+              <div class="project-links">
+                <a href="https://campusai.site" target="_blank" title="Live Site"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              </div>
+            </div>
+            <h3>CampusAI</h3>
+            <p>Serverless AI student assistant executing multi-turn conversation memory using Groq (Llama 3.3 70B), Python AWS Lambda, API Gateway, and DynamoDB. Deployed via OIDC GitHub Actions pipelines.</p>
+          </div>
+          <div class="tag-list">
+            <span class="tag">AWS SAM</span>
+            <span class="tag">Lambda</span>
+            <span class="tag">DynamoDB</span>
+            <span class="tag">Groq AI</span>
+            <span class="tag">OIDC</span>
+          </div>
+        </div>
+
+        <!-- Tomcat Events -->
+        <div class="project-card">
+          <div>
+            <div class="project-header">
+              <i class="fa-regular fa-folder-closed folder-icon"></i>
+              <div class="project-links">
+                <a href="https://github.com/EAkatse/tomcat-event-ticketing" target="_blank" title="GitHub Repo"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.tomcateventslimited.site/" target="_blank" title="Live Site"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              </div>
+            </div>
+            <h3>Tomcat Events Limited</h3>
+            <p>Serverless event registration and intake platform featuring automated ID parsing workflows, CloudFront static asset delivery with OAC, ACM SSL, and CloudWatch budget controls.</p>
+          </div>
+          <div class="tag-list">
+            <span class="tag">AWS Lambda</span>
+            <span class="tag">API Gateway</span>
+            <span class="tag">CloudFront</span>
+            <span class="tag">CloudWatch</span>
+          </div>
+        </div>
+
+        <!-- Ember & Root -->
+        <div class="project-card">
+          <div>
+            <div class="project-header">
+              <i class="fa-regular fa-folder-closed folder-icon"></i>
+              <div class="project-links">
+                <a href="https://lnkd.in/eUUX_U6h" target="_blank" title="GitHub Repo"><i class="fa-brands fa-github"></i></a>
+                <a href="https://lnkd.in/etgDMRYG" target="_blank" title="Live Site"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              </div>
+            </div>
+            <h3>Ember & Root Restaurant</h3>
+            <p>Highly available AWS infrastructure featuring an Application Load Balancer (ALB), EC2 Auto Scaling Groups running Apache, private S3 static storage behind CloudFront OAC, and automated deployment scripts.</p>
+          </div>
+          <div class="tag-list">
+            <span class="tag">AWS EC2</span>
+            <span class="tag">ALB / ASG</span>
+            <span class="tag">S3 / OAC</span>
+            <span class="tag">Apache</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Architecture Highlight Box -->
+      <div class="arch-box">
+        <h3><i class="fa-solid fa-cloud"></i> Automated CI/CD & Zero-Trust Infrastructure</h3>
+        <p>All projects are configured with secretless continuous deployment workflows utilizing AWS OpenID Connect (OIDC) trust policies. This eliminates static, long-lived credentials stored in GitHub repositories while ensuring complete, hands-free automation upon every main branch commit.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="social-links">
+      <a href="https://github.com/dquayartey" target="_blank"><i class="fa-brands fa-github"></i></a>
+      <a href="https://linkedin.com/in/quayarteydavid" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="mailto:quayarteydave@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+    <p>© 2026 David Quayartey. Architected for performance & zero-idle cost.</p>
+  </footer>
+
+  <!-- Interactive Terminal Script -->
+  <script>
+    const termInput = document.getElementById('term-input');
+    const termBody = document.getElementById('term-body');
+
+    const commands = {
+      'whoami': 'David Quayartey — Cloud & DevOps Engineer specializing in serverless architecture, IaC (AWS SAM), and zero-trust CI/CD workflows.',
+      'skills': 'Cloud: AWS (Lambda, API Gateway, DynamoDB, S3, CloudFront, Cognito)\nDevOps: GitHub Actions (OIDC), AWS SAM, CloudWatch, Linux, Git',
+      'projects': '1. CampusAI (https://campusai.site)\n2. Tomcat Events Limited\n3. Ember & Root Restaurant Architecture',
+      'clear': 'CLEAR'
+    };
+
+    termInput.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        const cmd = this.value.trim().toLowerCase();
+        this.value = '';
+
+        if (cmd === '') return;
+
+        if (cmd === 'clear') {
+          termBody.innerHTML = '';
+          return;
+        }
+
+        // Echo command
+        const line = document.createElement('div');
+        line.className = 'term-line';
+        line.innerHTML = `<span class="term-prompt">visitor@quayartey:~$</span> <span class="term-cmd">${cmd}</span>`;
+        termBody.appendChild(line);
+
+        // Echo output
+        const output = document.createElement('div');
+        output.className = 'term-output';
+        
+        if (commands[cmd]) {
+          output.textContent = commands[cmd];
+        } else {
+          output.textContent = `command not found: ${cmd}. Try running 'whoami', 'skills', or 'projects'.`;
+        }
+        
+        termBody.appendChild(output);
+        termBody.scrollTop = termBody.scrollHeight;
+      }
+    });
+  </script>
+</body>
+</html>
