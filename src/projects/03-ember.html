@@ -1,24 +1,24 @@
 <article class="project-card"
   data-title="Ember & Root Restaurant — Web Architecture"
   data-img="assets/projects/ember.jpg"
-  data-actions='[
-    {"label":"Live Demo","url":"https://lnkd.in/etgDMRYG","icon":"fa-solid fa-arrow-up-right-from-square","primary":true},
-    {"label":"Repository","url":"https://lnkd.in/eUUX_U6h","icon":"fa-brands fa-github","primary":false}
-  ]'
-  data-tags='["AWS EC2","Application Load Balancer","Auto Scaling Groups","Amazon S3","CloudFront (OAC)","Apache HTTP Server","Launch Templates","VPC & Subnets"]'
-  data-body='[
-    "Ember & Root is a highly available web infrastructure project built on AWS for a restaurant brand, demonstrating production-grade EC2-based architecture patterns. The system is designed to handle variable traffic loads — from quiet weekday browsing to peak weekend reservation surges — without manual intervention or service degradation.",
-    "At the core of the architecture is an Application Load Balancer (ALB) distributing HTTP/HTTPS traffic across an Auto Scaling Group (ASG) of EC2 instances running Apache HTTP Server. The ASG is configured with scaling policies tied to CPU utilization and request count metrics, automatically provisioning or terminating instances to match real-time demand while maintaining a minimum healthy instance count for baseline availability.",
-    "Static assets — images, CSS, JavaScript bundles — are offloaded from the EC2 instances to Amazon S3 and served through CloudFront with Origin Access Control (OAC). This separation of concerns reduces the compute load on backend instances, improves global asset delivery latency through edge caching, and ensures the S3 origin is never directly exposed to the public internet.",
-    "The infrastructure is defined using EC2 Launch Templates, enabling consistent, repeatable instance configuration across all ASG members. VPC design follows a multi-AZ subnet layout with public subnets for the ALB and private subnets for the application tier, enforcing network-level isolation between the load balancer and backend compute resources."
-  ]'
-  data-highlights='[
-    "Multi-AZ ALB + ASG architecture with CPU and request-based auto scaling policies",
-    "Static asset offloading to S3 + CloudFront OAC — reduces EC2 compute load",
-    "Launch Templates ensure consistent, repeatable instance configuration across ASG",
-    "VPC multi-AZ subnet design with public ALB tier and private application tier",
-    "Apache HTTP Server configured for reverse proxy and static content serving"
-  ]'
+  data-actions="[
+    {&quot;label&quot;:&quot;Live Demo&quot;,&quot;url&quot;:&quot;https://lnkd.in/etgDMRYG&quot;,&quot;icon&quot;:&quot;fa-solid fa-arrow-up-right-from-square&quot;,&quot;primary&quot;:true},
+    {&quot;label&quot;:&quot;Repository&quot;,&quot;url&quot;:&quot;https://lnkd.in/eUUX_U6h&quot;,&quot;icon&quot;:&quot;fa-brands fa-github&quot;,&quot;primary&quot;:false}
+  ]"
+  data-tags="[&quot;AWS EC2&quot;,&quot;Application Load Balancer&quot;,&quot;Auto Scaling Groups&quot;,&quot;Amazon S3&quot;,&quot;CloudFront (OAC)&quot;,&quot;Apache HTTP Server&quot;,&quot;Launch Templates&quot;,&quot;VPC & Subnets&quot;]"
+  data-body="[
+    &quot;Ember & Root is a highly available web infrastructure project built on AWS for a restaurant brand, demonstrating production-grade EC2-based architecture patterns. The system is designed to handle variable traffic loads — from quiet weekday browsing to peak weekend reservation surges — without manual intervention or service degradation.&quot;,
+    &quot;At the core of the architecture is an Application Load Balancer (ALB) distributing HTTP/HTTPS traffic across an Auto Scaling Group (ASG) of EC2 instances running Apache HTTP Server. The ASG is configured with scaling policies tied to CPU utilization and request count metrics, automatically provisioning or terminating instances to match real-time demand while maintaining a minimum healthy instance count for baseline availability.&quot;,
+    &quot;Static assets — images, CSS, JavaScript bundles — are offloaded from the EC2 instances to Amazon S3 and served through CloudFront with Origin Access Control (OAC). This separation of concerns reduces the compute load on backend instances, improves global asset delivery latency through edge caching, and ensures the S3 origin is never directly exposed to the public internet.&quot;,
+    &quot;The infrastructure is defined using EC2 Launch Templates, enabling consistent, repeatable instance configuration across all ASG members. VPC design follows a multi-AZ subnet layout with public subnets for the ALB and private subnets for the application tier, enforcing network-level isolation between the load balancer and backend compute resources.&quot;
+  ]"
+  data-highlights="[
+    &quot;Multi-AZ ALB + ASG architecture with CPU and request-based auto scaling policies&quot;,
+    &quot;Static asset offloading to S3 + CloudFront OAC — reduces EC2 compute load&quot;,
+    &quot;Launch Templates ensure consistent, repeatable instance configuration across ASG&quot;,
+    &quot;VPC multi-AZ subnet design with public ALB tier and private application tier&quot;,
+    &quot;Apache HTTP Server configured for reverse proxy and static content serving&quot;
+  ]"
   tabindex="0" role="button" aria-label="View Ember and Root project details">
   <div class="project-media">
     <img src="assets/projects/ember.jpg" alt="Ember & Root Screenshot" class="project-img">

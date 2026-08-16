@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | David Quayartey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+  <nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">&lt;DQ /&gt;</a>
+    <ul class="nav-links">
+      <li><a href="index.html">About</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+  <div class="page-wrapper">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-toggle" id="sidebarToggle">
+    <i class="fa-solid fa-chevrons-left"></i>
+    <span>On this page</span>
+  </button>
+  <div class="sidebar-content">
+    <div class="sidebar-label">Navigation</div>
+    <ul class="sidebar-nav"><li><a href="#intro">Introduction</a></li><li><a href="#bio">Background</a></li><li><a href="#expertise">Technical Expertise</a></li><li><a href="#approach">Engineering Philosophy</a></li></ul>
+  </div>
+</aside>
+
+    <div class="content-area">
+      <main class="container">
+        <section class="about-hero section-anchor" id="intro">
+  <div class="profile-frame">
+    <img src="assets/profile.jpg" alt="David Quayartey" class="profile-img">
+  </div>
+  <div class="about-bio">
+    <div class="hero-badge">
+      <span class="status-dot"></span> Cloud DevOps Engineer Trainee · Azubi Africa
+    </div>
+    <h1>Hi, I'm <span class="gradient-text">David Quayartey</span></h1>
+    <p>
+      Based in Accra, Ghana — building production-grade cloud infrastructure on AWS, one serverless stack at a time.
+    </p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="skills-section section-anchor" id="bio">
+  <h2 class="section-title">Background</h2>
+  <p style="color: var(--text-muted); font-size: 0.97rem; line-height: 1.85; margin-bottom: 1rem;">
+    My path into cloud engineering is anything but conventional. I hold a university degree in Medical Laboratory Science — a discipline built on precision, systematic thinking, and zero tolerance for error. Those same principles now drive how I design and operate cloud infrastructure: every resource scoped, every access path justified, every deployment reproducible.
+  </p>
+  <p style="color: var(--text-muted); font-size: 0.97rem; line-height: 1.85; margin-bottom: 1rem;">
+    I am currently a Cloud DevOps Engineer Trainee at <strong style="color: var(--text);">Azubi Africa</strong>, where I completed the Cloud Computing + AI programme and earned my certificate. The programme gave me hands-on exposure to real-world AWS architecture, infrastructure as code, CI/CD automation, and AI integration — skills I immediately applied across three capstone projects.
+  </p>
+  <p style="color: var(--text-muted); font-size: 0.97rem; line-height: 1.85; margin-bottom: 1rem;">
+    As a member of <strong style="color: var(--accent-cyan);">Team Tomcat</strong> — the highest-scoring team across all three capstone projects at Azubi Africa — I contributed to building and deploying the serverless platforms you'll find in my portfolio. From a Groq-powered AI student support assistant to a live event ticketing platform, every project was shipped to production with real domains, real users, and real AWS infrastructure.
+  </p>
+  <p style="color: var(--text-muted); font-size: 0.97rem; line-height: 1.85;">
+    My background in cybersecurity informs everything I build. I don't treat security as an afterthought — IAM least-privilege, OIDC-based CI/CD with no long-lived credentials, CloudFront OAC, and Cognito JWT authorization are standard practice in my stacks, not optional extras. I'm actively transitioning into a full Cloud DevOps Engineering role, bringing a security-first mindset to every layer of the infrastructure I design.
+  </p>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="skills-section section-anchor" id="expertise">
+  <h2 class="section-title">Technical Expertise</h2>
+  <div class="skills-flex">
+    <div class="skill-pill"><i class="fa-brands fa-aws"></i> AWS Serverless (Lambda, API GW, SAM)</div>
+    <div class="skill-pill"><i class="fa-solid fa-code-branch"></i> CloudFormation & SAM IaC</div>
+    <div class="skill-pill"><i class="fa-brands fa-github"></i> GitHub Actions with OIDC (no static keys)</div>
+    <div class="skill-pill"><i class="fa-solid fa-database"></i> DynamoDB single-table design</div>
+    <div class="skill-pill"><i class="fa-brands fa-python"></i> Python 3.12 Lambda handlers</div>
+    <div class="skill-pill"><i class="fa-solid fa-shield-halved"></i> IAM least-privilege role scoping</div>
+    <div class="skill-pill"><i class="fa-solid fa-globe"></i> CloudFront OAC + ACM SSL</div>
+    <div class="skill-pill"><i class="fa-solid fa-server"></i> EC2 ALB + ASG + Apache/Nginx</div>
+    <div class="skill-pill"><i class="fa-solid fa-chart-line"></i> CloudWatch alarms & cost budgets</div>
+    <div class="skill-pill"><i class="fa-solid fa-user-lock"></i> Cognito User Pools & JWT auth</div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="skills-section section-anchor" id="approach">
+  <h2 class="section-title">Engineering Philosophy</h2>
+  <div class="skills-flex">
+    <div class="skill-pill"><i class="fa-solid fa-bolt"></i> Pay-per-invocation, never pay-for-idle</div>
+    <div class="skill-pill"><i class="fa-solid fa-lock"></i> Secrets never touch version control</div>
+    <div class="skill-pill"><i class="fa-solid fa-infinity"></i> Every deploy is a git push, never manual</div>
+    <div class="skill-pill"><i class="fa-solid fa-layer-group"></i> If it's not in a template, it doesn't exist</div>
+    <div class="skill-pill"><i class="fa-solid fa-scale-balanced"></i> Multi-AZ by default, single-AZ by exception</div>
+    <div class="skill-pill"><i class="fa-solid fa-user-shield"></i> Least privilege on every IAM role, always</div>
+  </div>
+</section>
+
+      </main>
+    </div>
+  </div>
+
+  <footer>
+  <div class="social-links">
+    <a href="https://github.com/dquayartey" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+    <a href="https://linkedin.com/in/quayarteydavid" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+    <a href="mailto:quayarteydave@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+  </div>
+  <p>© 2026 David Quayartey. Cloud & DevOps Architecture.</p>
+</footer>
+
+
+  <!-- Project Detail Modal -->
+  <div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true">
+    <div class="modal" id="modalInner"></div>
+  </div>
+
+  <script>
+    // ── Active nav pill ──
+    const currentPage = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      if (a.getAttribute('href') === currentPage) a.classList.add('active');
+    });
+
+    // ── Sidebar toggle ──
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('sidebarToggle');
+    if (sidebar && toggleBtn) {
+      toggleBtn.addEventListener('click', () => sidebar.classList.toggle('collapsed'));
+    }
+
+    // ── Sidebar active link on scroll ──
+    const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+    if (sidebarLinks.length) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            sidebarLinks.forEach(l => l.classList.remove('active'));
+            const match = document.querySelector(`.sidebar-nav a[href="#${e.target.id}"]`);
+            if (match) match.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-30% 0px -60% 0px' });
+      document.querySelectorAll('.section-anchor').forEach(s => observer.observe(s));
+    }
+
+    // ── Project Modal ──
+    const overlay = document.getElementById('projectModal');
+    const modalInner = document.getElementById('modalInner');
+    let modalOpen = false;
+
+    function openModal(card) {
+      const data = card.dataset;
+      const actions = JSON.parse(data.actions || '[]');
+      const tags = JSON.parse(data.tags || '[]');
+      const highlights = JSON.parse(data.highlights || '[]');
+      const body = JSON.parse(data.body || '[]');
+
+      const actionsHtml = actions.map(a =>
+        `<a href="${a.url}" target="_blank" class="modal-btn ${a.primary ? 'modal-btn-primary' : 'modal-btn-secondary'}" onclick="event.stopPropagation()">
+          <i class="${a.icon}"></i> ${a.label}
+        </a>`
+      ).join('');
+
+      const tagsHtml = tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
+      const bodyHtml = body.map(p => `<p>${p}</p>`).join('');
+      const highlightsHtml = highlights.map(h => `<li>${h}</li>`).join('');
+
+      modalInner.innerHTML = `
+        <div class="modal-hero">
+          <img src="${data.img}" alt="${data.title}">
+        </div>
+        <div class="modal-body">
+          <div class="modal-title-row">
+            <h2 class="modal-title">${data.title}</h2>
+            <button class="modal-close" id="modalClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+          ${actionsHtml ? `<div class="modal-actions">${actionsHtml}</div>` : ''}
+          <div class="modal-section">
+            <div class="modal-section-title">Overview</div>
+            ${bodyHtml}
+          </div>
+          ${highlightsHtml ? `
+          <div class="modal-section">
+            <div class="modal-section-title">Key Highlights</div>
+            <ul class="modal-highlights">${highlightsHtml}</ul>
+          </div>` : ''}
+          ${tagsHtml ? `
+          <div class="modal-section">
+            <div class="modal-section-title">Tech Stack</div>
+            <div class="modal-tags">${tagsHtml}</div>
+          </div>` : ''}
+        </div>`;
+
+      overlay.classList.add('open');
+      document.documentElement.style.overflow = 'hidden';
+      modalOpen = true;
+      document.getElementById('modalClose').addEventListener('click', closeModal);
+    }
+
+    function closeModal() {
+      overlay.classList.remove('open');
+      document.documentElement.style.overflow = '';
+      modalOpen = false;
+    }
+
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && modalOpen) closeModal(); });
+
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('click', () => openModal(card));
+    });
+  </script>
+
+</body>
+</html>

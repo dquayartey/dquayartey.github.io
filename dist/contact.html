@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | David Quayartey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+  <nav>
+  <div class="container nav-inner">
+    <a href="index.html" class="logo">&lt;DQ /&gt;</a>
+    <ul class="nav-links">
+      <li><a href="index.html">About</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+  <div class="page-wrapper">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-toggle" id="sidebarToggle">
+    <i class="fa-solid fa-chevrons-left"></i>
+    <span>On this page</span>
+  </button>
+  <div class="sidebar-content">
+    <div class="sidebar-label">Navigation</div>
+    <ul class="sidebar-nav"><li><a href="#connect">Get in Touch</a></li></ul>
+  </div>
+</aside>
+
+    <div class="content-area">
+      <main class="container">
+        <section class="contact-section section-anchor" id="connect">
+  <h1 class="gradient-text">Let's Connect</h1>
+  <p>Interested in discussing cloud architecture, DevOps deployment automation, or engineering opportunities? Reach out directly via any of the channels below.</p>
+
+  <div class="contact-links-list">
+    <a href="mailto:quayarteydave@gmail.com" class="contact-card">
+      <i class="fa-solid fa-envelope contact-icon"></i>
+      <div>
+        <h3>Email</h3>
+        <p>quayarteydave@gmail.com</p>
+      </div>
+    </a>
+
+    <a href="https://linkedin.com/in/quayarteydavid" target="_blank" class="contact-card">
+      <i class="fa-brands fa-linkedin contact-icon"></i>
+      <div>
+        <h3>LinkedIn</h3>
+        <p>linkedin.com/in/quayarteydavid</p>
+      </div>
+    </a>
+
+    <a href="https://github.com/dquayartey" target="_blank" class="contact-card">
+      <i class="fa-brands fa-github contact-icon"></i>
+      <div>
+        <h3>GitHub</h3>
+        <p>github.com/dquayartey</p>
+      </div>
+    </a>
+  </div>
+</section>
+
+      </main>
+    </div>
+  </div>
+
+  <footer>
+  <div class="social-links">
+    <a href="https://github.com/dquayartey" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+    <a href="https://linkedin.com/in/quayarteydavid" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+    <a href="mailto:quayarteydave@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+  </div>
+  <p>© 2026 David Quayartey. Cloud & DevOps Architecture.</p>
+</footer>
+
+
+  <!-- Project Detail Modal -->
+  <div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true">
+    <div class="modal" id="modalInner"></div>
+  </div>
+
+  <script>
+    // ── Active nav pill ──
+    const currentPage = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      if (a.getAttribute('href') === currentPage) a.classList.add('active');
+    });
+
+    // ── Sidebar toggle ──
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('sidebarToggle');
+    if (sidebar && toggleBtn) {
+      toggleBtn.addEventListener('click', () => sidebar.classList.toggle('collapsed'));
+    }
+
+    // ── Sidebar active link on scroll ──
+    const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+    if (sidebarLinks.length) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            sidebarLinks.forEach(l => l.classList.remove('active'));
+            const match = document.querySelector(`.sidebar-nav a[href="#${e.target.id}"]`);
+            if (match) match.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-30% 0px -60% 0px' });
+      document.querySelectorAll('.section-anchor').forEach(s => observer.observe(s));
+    }
+
+    // ── Project Modal ──
+    const overlay = document.getElementById('projectModal');
+    const modalInner = document.getElementById('modalInner');
+    let modalOpen = false;
+
+    function openModal(card) {
+      const data = card.dataset;
+      const actions = JSON.parse(data.actions || '[]');
+      const tags = JSON.parse(data.tags || '[]');
+      const highlights = JSON.parse(data.highlights || '[]');
+      const body = JSON.parse(data.body || '[]');
+
+      const actionsHtml = actions.map(a =>
+        `<a href="${a.url}" target="_blank" class="modal-btn ${a.primary ? 'modal-btn-primary' : 'modal-btn-secondary'}" onclick="event.stopPropagation()">
+          <i class="${a.icon}"></i> ${a.label}
+        </a>`
+      ).join('');
+
+      const tagsHtml = tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
+      const bodyHtml = body.map(p => `<p>${p}</p>`).join('');
+      const highlightsHtml = highlights.map(h => `<li>${h}</li>`).join('');
+
+      modalInner.innerHTML = `
+        <div class="modal-hero">
+          <img src="${data.img}" alt="${data.title}">
+        </div>
+        <div class="modal-body">
+          <div class="modal-title-row">
+            <h2 class="modal-title">${data.title}</h2>
+            <button class="modal-close" id="modalClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+          ${actionsHtml ? `<div class="modal-actions">${actionsHtml}</div>` : ''}
+          <div class="modal-section">
+            <div class="modal-section-title">Overview</div>
+            ${bodyHtml}
+          </div>
+          ${highlightsHtml ? `
+          <div class="modal-section">
+            <div class="modal-section-title">Key Highlights</div>
+            <ul class="modal-highlights">${highlightsHtml}</ul>
+          </div>` : ''}
+          ${tagsHtml ? `
+          <div class="modal-section">
+            <div class="modal-section-title">Tech Stack</div>
+            <div class="modal-tags">${tagsHtml}</div>
+          </div>` : ''}
+        </div>`;
+
+      overlay.classList.add('open');
+      document.documentElement.style.overflow = 'hidden';
+      modalOpen = true;
+      document.getElementById('modalClose').addEventListener('click', closeModal);
+    }
+
+    function closeModal() {
+      overlay.classList.remove('open');
+      document.documentElement.style.overflow = '';
+      modalOpen = false;
+    }
+
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && modalOpen) closeModal(); });
+
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('click', () => openModal(card));
+    });
+  </script>
+
+</body>
+</html>

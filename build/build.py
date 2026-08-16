@@ -1,6 +1,7 @@
 import os
 import re
 import json
+import html
 import shutil
 
 def read_file(filepath):
@@ -16,22 +17,22 @@ def slugify(filename):
     name = filename.rsplit('.', 1)[0]
     return re.sub(r'^\d+-', '', name)
 
-def extract_attr(html, name, quote):
-    m = re.search(rf"data-{name}={quote}(.*?){quote}", html, re.DOTALL)
+def extract_attr(raw, name):
+    m = re.search(rf'data-{name}="(.*?)"', raw, re.DOTALL)
     return m.group(1) if m else ''
 
-def parse_project(html):
+def parse_project(raw):
     return {
-        'title': extract_attr(html, 'title', '"'),
-        'img': extract_attr(html, 'img', '"'),
-        'actions': json.loads(extract_attr(html, 'actions', "'") or '[]'),
-        'tags': json.loads(extract_attr(html, 'tags', "'") or '[]'),
-        'body': json.loads(extract_attr(html, 'body', "'") or '[]'),
-        'highlights': json.loads(extract_attr(html, 'highlights', "'") or '[]'),
+        'title': html.unescape(extract_attr(raw, 'title')),
+        'img': extract_attr(raw, 'img'),
+        'actions': json.loads(html.unescape(extract_attr(raw, 'actions')) or '[]'),
+        'tags': json.loads(html.unescape(extract_attr(raw, 'tags')) or '[]'),
+        'body': json.loads(html.unescape(extract_attr(raw, 'body')) or '[]'),
+        'highlights': json.loads(html.unescape(extract_attr(raw, 'highlights')) or '[]'),
     }
 
-def make_card_link(html, slug):
-    card = html.replace('<article class="project-card"', f'<a class="project-card" href="projects/{slug}.html"')
+def make_card_link(raw, slug):
+    card = raw.replace('<article class="project-card"', f'<a class="project-card" href="projects/{slug}.html"')
     card = re.sub(r'\s*tabindex="0"\s*role="button"\s*aria-label="([^"]*)"', r' aria-label="\1"', card)
     card = card.replace('</article>', '</a>')
     return card
@@ -75,13 +76,13 @@ def make_sidebar(links):
 
 def build_page(base, nav, footer, title, content, sidebar_links, base_prefix=''):
     sidebar = make_sidebar(sidebar_links)
-    html = base.replace('{{TITLE}}', title)
-    html = html.replace('{{NAV}}', nav)
-    html = html.replace('{{FOOTER}}', footer)
-    html = html.replace('{{SIDEBAR}}', sidebar)
-    html = html.replace('{{CONTENT}}', content)
-    html = html.replace('{{BASE}}', base_prefix)  # catches tokens from base.html AND nav.html
-    return html
+    out = base.replace('{{TITLE}}', title)
+    out = out.replace('{{NAV}}', nav)
+    out = out.replace('{{FOOTER}}', footer)
+    out = out.replace('{{SIDEBAR}}', sidebar)
+    out = out.replace('{{CONTENT}}', content)
+    out = out.replace('{{BASE}}', base_prefix)  # catches tokens from base.html AND nav.html
+    return out
 
 def build_site():
     print("🚀 Starting build process...")
