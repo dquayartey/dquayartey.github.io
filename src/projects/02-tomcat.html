@@ -1,21 +1,41 @@
-<article class="project-item">
+<article class="project-card"
+  data-title="Tomcat Events — Event Ticketing Platform"
+  data-img="assets/projects/tomcat.jpg"
+  data-actions='[
+    {"label":"Repository","url":"https://github.com/EAkatse/tomcat-event-ticketing","icon":"fa-brands fa-github","primary":false},
+    {"label":"Live Demo","url":"https://www.tomcateventslimited.site/","icon":"fa-solid fa-arrow-up-right-from-square","primary":true}
+  ]'
+  data-tags='["AWS SAM","API Gateway","AWS Lambda","Amazon S3","CloudFront (OAC)","ACM SSL","CloudWatch Alarms","Python","Serverless"]'
+  data-body='[
+    "Tomcat Events is a fully serverless event registration and ticketing platform built on AWS, designed to handle high-concurrency ticket sales without the cost or complexity of managing persistent servers. The platform supports event discovery, attendee registration, and automated confirmation workflows — all triggered on demand through Lambda-backed API endpoints.",
+    "Static frontend assets are hosted on Amazon S3 and delivered globally through Amazon CloudFront with Origin Access Control (OAC) enforced, ensuring the S3 bucket is never publicly accessible. ACM-issued SSL certificates provide end-to-end HTTPS encryption. This architecture eliminates the need for a traditional web server while achieving sub-50ms global asset delivery through CloudFront edge caching.",
+    "The backend registration workflow includes an automated ID parsing pipeline that extracts and validates attendee information from submitted documents, reducing manual data entry overhead for event organizers. Lambda functions handle the parsing logic, with results written to DynamoDB for persistent attendee records and downstream reporting.",
+    "Operational visibility is maintained through a suite of proactive CloudWatch alarms configured to alert on Lambda error rates, API Gateway 5xx responses, and DynamoDB throttling events. This ensures the operations team is notified before issues impact attendees, supporting the platform'\''s commitment to reliable, high-availability event experiences."
+  ]'
+  data-highlights='[
+    "CloudFront OAC enforced — S3 bucket never directly accessible from the internet",
+    "Automated ID parsing workflow reduces manual attendee data entry",
+    "Proactive CloudWatch alarms on Lambda errors, API 5xx, and DynamoDB throttles",
+    "ACM SSL with automatic certificate renewal — zero manual certificate management",
+    "Fully serverless — zero fixed infrastructure cost between events"
+  ]'
+  tabindex="0" role="button" aria-label="View Tomcat Events project details">
   <div class="project-media">
     <img src="assets/projects/tomcat.jpg" alt="Tomcat Events Screenshot" class="project-img">
   </div>
   <div class="project-content">
     <div class="project-meta">
       <h2>Tomcat Events — Event Ticketing Platform</h2>
-      <div class="project-actions">
-        <a href="https://github.com/EAkatse/tomcat-event-ticketing" target="_blank" class="action-link"><i class="fa-brands fa-github"></i> Repository</a>
-        <a href="https://www.tomcateventslimited.site/" target="_blank" class="action-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
-      </div>
     </div>
-    <p>A serverless event registration platform featuring automated ID parsing workflows, Amazon S3 static asset hosting secured via CloudFront Origin Access Control (OAC), ACM SSL, and proactive CloudWatch alarms.</p>
-    <div class="tag-list">
-      <span class="tag">AWS SAM</span>
-      <span class="tag">API Gateway</span>
-      <span class="tag">CloudFront (OAC)</span>
-      <span class="tag">CloudWatch</span>
+    <p class="project-summary">A serverless event registration platform featuring automated ID parsing workflows, Amazon S3 static hosting secured via CloudFront OAC, ACM SSL end-to-end encryption, and proactive CloudWatch operational alarms.</p>
+    <div class="project-footer">
+      <div class="tag-list">
+        <span class="tag">AWS SAM</span>
+        <span class="tag">API Gateway</span>
+        <span class="tag">CloudFront (OAC)</span>
+        <span class="tag">CloudWatch</span>
+      </div>
+      <span class="card-cta">View details <i class="fa-solid fa-arrow-right"></i></span>
     </div>
   </div>
 </article>

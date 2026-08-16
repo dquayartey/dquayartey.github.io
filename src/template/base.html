@@ -14,11 +14,116 @@
 
   {{NAV}}
 
-  <main class="container">
-    {{CONTENT}}
-  </main>
+  <div class="page-wrapper">
+    {{SIDEBAR}}
+
+    <div class="content-area">
+      <main class="container">
+        {{CONTENT}}
+      </main>
+    </div>
+  </div>
 
   {{FOOTER}}
+
+  <!-- Project Detail Modal -->
+  <div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true">
+    <div class="modal" id="modalInner"></div>
+  </div>
+
+  <script>
+    // ── Active nav pill ──
+    const currentPage = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      if (a.getAttribute('href') === currentPage) a.classList.add('active');
+    });
+
+    // ── Sidebar toggle ──
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('sidebarToggle');
+    if (sidebar && toggleBtn) {
+      toggleBtn.addEventListener('click', () => sidebar.classList.toggle('collapsed'));
+    }
+
+    // ── Sidebar active link on scroll ──
+    const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+    if (sidebarLinks.length) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            sidebarLinks.forEach(l => l.classList.remove('active'));
+            const match = document.querySelector(`.sidebar-nav a[href="#${e.target.id}"]`);
+            if (match) match.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-30% 0px -60% 0px' });
+      document.querySelectorAll('.section-anchor').forEach(s => observer.observe(s));
+    }
+
+    // ── Project Modal ──
+    const overlay = document.getElementById('projectModal');
+    const modalInner = document.getElementById('modalInner');
+
+    function openModal(card) {
+      const data = card.dataset;
+      const actions = JSON.parse(data.actions || '[]');
+      const tags = JSON.parse(data.tags || '[]');
+      const highlights = JSON.parse(data.highlights || '[]');
+      const body = JSON.parse(data.body || '[]');
+
+      const actionsHtml = actions.map(a =>
+        `<a href="${a.url}" target="_blank" class="modal-btn ${a.primary ? 'modal-btn-primary' : 'modal-btn-secondary'}">
+          <i class="${a.icon}"></i> ${a.label}
+        </a>`
+      ).join('');
+
+      const tagsHtml = tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
+      const bodyHtml = body.map(p => `<p>${p}</p>`).join('');
+      const highlightsHtml = highlights.map(h => `<li>${h}</li>`).join('');
+
+      modalInner.innerHTML = `
+        <div class="modal-hero">
+          <img src="${data.img}" alt="${data.title}">
+        </div>
+        <div class="modal-body">
+          <div class="modal-title-row">
+            <h2 class="modal-title">${data.title}</h2>
+            <button class="modal-close" id="modalClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+          </div>
+          ${actionsHtml ? `<div class="modal-actions">${actionsHtml}</div>` : ''}
+          <div class="modal-section">
+            <div class="modal-section-title">Overview</div>
+            ${bodyHtml}
+          </div>
+          ${highlightsHtml ? `
+          <div class="modal-section">
+            <div class="modal-section-title">Key Highlights</div>
+            <ul class="modal-highlights">${highlightsHtml}</ul>
+          </div>` : ''}
+          ${tagsHtml ? `
+          <div class="modal-section">
+            <div class="modal-section-title">Tech Stack</div>
+            <div class="modal-tags">${tagsHtml}</div>
+          </div>` : ''}
+        </div>`;
+
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('modalClose').addEventListener('click', closeModal);
+    }
+
+    function closeModal() {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('click', () => openModal(card));
+    });
+  </script>
 
 </body>
 </html>

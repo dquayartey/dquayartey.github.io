@@ -10,65 +10,67 @@ def write_file(filepath, content):
     with open(filepath, 'w', encoding='utf-8') as f:
         f.write(content)
 
+def make_sidebar(links):
+    items = ''.join(f'<li><a href="#{id}">{label}</a></li>' for id, label in links)
+    return f'''<aside class="sidebar" id="sidebar">
+  <button class="sidebar-toggle" id="sidebarToggle">
+    <i class="fa-solid fa-chevrons-left"></i>
+    <span>On this page</span>
+  </button>
+  <div class="sidebar-content">
+    <div class="sidebar-label">Navigation</div>
+    <ul class="sidebar-nav">{items}</ul>
+  </div>
+</aside>'''
+
+def build_page(base, nav, footer, title, content, sidebar_links):
+    sidebar = make_sidebar(sidebar_links)
+    html = base.replace('{{TITLE}}', title)
+    html = html.replace('{{NAV}}', nav)
+    html = html.replace('{{FOOTER}}', footer)
+    html = html.replace('{{SIDEBAR}}', sidebar)
+    html = html.replace('{{CONTENT}}', content)
+    return html
+
 def build_site():
     print("🚀 Starting build process...")
 
-    # Clean and re-create output directory
     if os.path.exists('dist'):
         shutil.rmtree('dist')
     os.makedirs('dist')
 
-    # Copy assets folder
     if os.path.exists('src/assets'):
         shutil.copytree('src/assets', 'dist/assets')
-        print("📦 Assets successfully copied to dist/assets")
+        print("📦 Assets copied to dist/assets")
 
-    # Load shell templates and partials
-    base_template = read_file('src/template/base.html')
-    nav_partial = read_file('src/partials/nav.html')
-    footer_partial = read_file('src/partials/footer.html')
+    base = read_file('src/template/base.html')
+    nav = read_file('src/partials/nav.html')
+    footer = read_file('src/partials/footer.html')
 
-    # 1. Build Index / About Page (dist/index.html)
-    about_content = read_file('src/pages/about.html')
-    index_html = base_template.replace('{{TITLE}}', 'About & Skills')
-    index_html = index_html.replace('{{NAV}}', nav_partial)
-    index_html = index_html.replace('{{FOOTER}}', footer_partial)
-    index_html = index_html.replace('{{CONTENT}}', about_content)
-    write_file('dist/index.html', index_html)
-    print("  + Generated dist/index.html (About & Skills)")
+    # 1. About / Index
+    about_links = [('intro', 'Introduction'), ('expertise', 'Technical Expertise'), ('approach', 'Engineering Philosophy')]
+    write_file('dist/index.html', build_page(base, nav, footer, 'About & Skills', read_file('src/pages/about.html'), about_links))
+    print("  + dist/index.html")
 
-    # 2. Build Portfolio Page (dist/portfolio.html)
-    portfolio_intro = read_file('src/pages/portfolio-intro.html')
+    # 2. Portfolio
     projects_dir = 'src/projects'
-    project_cards = []
-
+    cards = []
     if os.path.exists(projects_dir):
-        project_files = sorted(os.listdir(projects_dir))
-        for filename in project_files:
-            if filename.endswith('.html'):
-                file_path = os.path.join(projects_dir, filename)
-                project_cards.append(read_file(file_path))
+        for f in sorted(os.listdir(projects_dir)):
+            if f.endswith('.html'):
+                cards.append(read_file(os.path.join(projects_dir, f)))
 
-    all_projects_html = "\n".join(project_cards)
-    portfolio_content = portfolio_intro.replace('{{PROJECT_CARDS}}', all_projects_html)
+    intro = read_file('src/pages/portfolio-intro.html').replace('{{PROJECT_CARDS}}', '\n'.join(cards))
+    portfolio_links = [('projects', 'Projects')]
+    write_file('dist/portfolio.html', build_page(base, nav, footer, 'Portfolio', intro, portfolio_links))
+    print("  + dist/portfolio.html")
 
-    portfolio_html = base_template.replace('{{TITLE}}', 'Portfolio')
-    portfolio_html = portfolio_html.replace('{{NAV}}', nav_partial)
-    portfolio_html = portfolio_html.replace('{{FOOTER}}', footer_partial)
-    portfolio_html = portfolio_html.replace('{{CONTENT}}', portfolio_content)
-    write_file('dist/portfolio.html', portfolio_html)
-    print("  + Generated dist/portfolio.html (Portfolio Vertical List)")
+    # 3. Contact
+    contact_links = [('connect', 'Get in Touch')]
+    write_file('dist/contact.html', build_page(base, nav, footer, 'Contact', read_file('src/pages/contact.html'), contact_links))
+    print("  + dist/contact.html")
 
-    # 3. Build Contact Page (dist/contact.html)
-    contact_content = read_file('src/pages/contact.html')
-    contact_html = base_template.replace('{{TITLE}}', 'Contact')
-    contact_html = contact_html.replace('{{NAV}}', nav_partial)
-    contact_html = contact_html.replace('{{FOOTER}}', footer_partial)
-    contact_html = contact_html.replace('{{CONTENT}}', contact_content)
-    write_file('dist/contact.html', contact_html)
-    print("  + Generated dist/contact.html (Contact Links)")
-
-    print("✅ Build complete! Static site generated in dist/")
+    print("✅ Build complete — dist/")
 
 if __name__ == '__main__':
     build_site()

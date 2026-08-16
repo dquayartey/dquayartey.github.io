@@ -1,21 +1,41 @@
-<article class="project-item">
+<article class="project-card"
+  data-title="Ember & Root Restaurant — Web Architecture"
+  data-img="assets/projects/ember.jpg"
+  data-actions='[
+    {"label":"Repository","url":"https://lnkd.in/eUUX_U6h","icon":"fa-brands fa-github","primary":false},
+    {"label":"Live Demo","url":"https://lnkd.in/etgDMRYG","icon":"fa-solid fa-arrow-up-right-from-square","primary":true}
+  ]'
+  data-tags='["AWS EC2","Application Load Balancer","Auto Scaling Groups","Amazon S3","CloudFront (OAC)","Apache HTTP Server","Launch Templates","VPC & Subnets"]'
+  data-body='[
+    "Ember & Root is a highly available web infrastructure project built on AWS for a restaurant brand, demonstrating production-grade EC2-based architecture patterns. The system is designed to handle variable traffic loads — from quiet weekday browsing to peak weekend reservation surges — without manual intervention or service degradation.",
+    "At the core of the architecture is an Application Load Balancer (ALB) distributing HTTP/HTTPS traffic across an Auto Scaling Group (ASG) of EC2 instances running Apache HTTP Server. The ASG is configured with scaling policies tied to CPU utilization and request count metrics, automatically provisioning or terminating instances to match real-time demand while maintaining a minimum healthy instance count for baseline availability.",
+    "Static assets — images, CSS, JavaScript bundles — are offloaded from the EC2 instances to Amazon S3 and served through CloudFront with Origin Access Control (OAC). This separation of concerns reduces the compute load on backend instances, improves global asset delivery latency through edge caching, and ensures the S3 origin is never directly exposed to the public internet.",
+    "The infrastructure is defined using EC2 Launch Templates, enabling consistent, repeatable instance configuration across all ASG members. VPC design follows a multi-AZ subnet layout with public subnets for the ALB and private subnets for the application tier, enforcing network-level isolation between the load balancer and backend compute resources."
+  ]'
+  data-highlights='[
+    "Multi-AZ ALB + ASG architecture with CPU and request-based auto scaling policies",
+    "Static asset offloading to S3 + CloudFront OAC — reduces EC2 compute load",
+    "Launch Templates ensure consistent, repeatable instance configuration across ASG",
+    "VPC multi-AZ subnet design with public ALB tier and private application tier",
+    "Apache HTTP Server configured for reverse proxy and static content serving"
+  ]'
+  tabindex="0" role="button" aria-label="View Ember and Root project details">
   <div class="project-media">
     <img src="assets/projects/ember.jpg" alt="Ember & Root Screenshot" class="project-img">
   </div>
   <div class="project-content">
     <div class="project-meta">
       <h2>Ember & Root Restaurant — Web Architecture</h2>
-      <div class="project-actions">
-        <a href="https://lnkd.in/eUUX_U6h" target="_blank" class="action-link"><i class="fa-brands fa-github"></i> Repository</a>
-        <a href="https://lnkd.in/etgDMRYG" target="_blank" class="action-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a>
-      </div>
     </div>
-    <p>A highly available web infrastructure configured on AWS featuring an Application Load Balancer (ALB), Auto Scaling Groups (ASG) running Apache backend servers, and S3 asset offloading behind CloudFront.</p>
-    <div class="tag-list">
-      <span class="tag">AWS EC2</span>
-      <span class="tag">ALB / ASG</span>
-      <span class="tag">S3 / OAC</span>
-      <span class="tag">Apache</span>
+    <p class="project-summary">A highly available web infrastructure on AWS featuring an Application Load Balancer, Auto Scaling Groups running Apache backend servers, and S3 asset offloading behind CloudFront OAC for global edge delivery.</p>
+    <div class="project-footer">
+      <div class="tag-list">
+        <span class="tag">AWS EC2</span>
+        <span class="tag">ALB / ASG</span>
+        <span class="tag">S3 / OAC</span>
+        <span class="tag">Apache</span>
+      </div>
+      <span class="card-cta">View details <i class="fa-solid fa-arrow-right"></i></span>
     </div>
   </div>
 </article>
