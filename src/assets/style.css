@@ -349,3 +349,49 @@ footer {
 @media (max-width: 900px) {
   .sidebar { display: none; }
 }
+.project-period,
+.detail-period {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.detail-title-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+}
+.status-ongoing {
+  background: rgba(250, 204, 21, 0.15);
+  color: #facc15;
+}
+.status-ongoing .status-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #facc15;
+  display: inline-block;
+}
+
+.detail-section-heading {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--accent-cyan);
+  margin: 1.5rem 0 0.5rem;
+}
+.detail-section-heading:first-child {
+  margin-top: 0;
+}

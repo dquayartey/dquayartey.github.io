@@ -1,7 +1,6 @@
 import os
 import re
 import json
-import html
 import shutil
 
 def read_file(filepath):
@@ -14,27 +13,23 @@ def write_file(filepath, content):
         f.write(content)
 
 def slugify(filename):
-    name = filename.rsplit('.', 1)[0]
-    return re.sub(r'^\d+-', '', name)
+    return filename.rsplit('.', 1)[0]
 
-def extract_attr(raw, name):
-    m = re.search(rf'data-{name}="(.*?)"', raw, re.DOTALL)
-    return m.group(1) if m else ''
+def make_status_badge(status):
+    if status == 'ongoing':
+        return '<span class="status-badge status-ongoing"><span class="status-dot"></span> In Progress</span>'
+    return ''
 
-def parse_project(raw):
-    return {
-        'title': html.unescape(extract_attr(raw, 'title')),
-        'img': extract_attr(raw, 'img'),
-        'actions': json.loads(html.unescape(extract_attr(raw, 'actions')) or '[]'),
-        'tags': json.loads(html.unescape(extract_attr(raw, 'tags')) or '[]'),
-        'body': json.loads(html.unescape(extract_attr(raw, 'body')) or '[]'),
-        'highlights': json.loads(html.unescape(extract_attr(raw, 'highlights')) or '[]'),
-    }
-
-def make_card_link(raw, slug):
-    card = raw.replace('<article class="project-card"', f'<a class="project-card" href="projects/{slug}.html"')
-    card = re.sub(r'\s*tabindex="0"\s*role="button"\s*aria-label="([^"]*)"', r' aria-label="\1"', card)
-    card = card.replace('</article>', '</a>')
+def make_card(template, data, slug):
+    tags_html = ''.join(f'<span class="tag">{t}</span>' for t in data['tags'][:5])
+    card = template
+    card = card.replace('{{SLUG}}', slug)
+    card = card.replace('{{TITLE}}', data['title'])
+    card = card.replace('{{IMG}}', data['img'])
+    card = card.replace('{{SUMMARY}}', data['summary'])
+    card = card.replace('{{PERIOD}}', data['period'])
+    card = card.replace('{{STATUS_BADGE}}', make_status_badge(data['status']))
+    card = card.replace('{{TAGS_HTML}}', tags_html)
     return card
 
 def make_detail_content(data):
@@ -43,16 +38,25 @@ def make_detail_content(data):
         f'<i class="{a["icon"]}"></i> {a["label"]}</a>'
         for a in data['actions']
     )
-    body_html = ''.join(f'<p>{p}</p>' for p in data['body'])
+    body_html = ''.join(
+        f'<h3 class="detail-section-heading">{p["heading"]}</h3><p>{p["text"]}</p>'
+        for p in data['body']
+    )
     highlights_html = ''.join(f'<li>{h}</li>' for h in data['highlights'])
     tags_html = ''.join(f'<span class="modal-tag">{t}</span>' for t in data['tags'])
+    status_badge = make_status_badge(data['status'])
+    period_html = f'<span class="detail-period">{data["period"]}</span>' if data['period'] else ''
 
     return f'''<article class="project-detail section-anchor" id="overview">
   <a href="../portfolio.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</a>
   <div class="detail-hero">
     <img src="../{data['img']}" alt="{data['title']}">
+    {status_badge}
   </div>
-  <h1 class="detail-title">{data['title']}</h1>
+  <div class="detail-title-row">
+    <h1 class="detail-title">{data['title']}</h1>
+    {period_html}
+  </div>
   {f'<div class="modal-actions">{actions_html}</div>' if actions_html else ''}
   <div class="modal-section">
     {body_html}
@@ -106,16 +110,18 @@ def build_site():
 
     # 2. Portfolio + individual project detail pages
     projects_dir = 'src/projects'
+    card_template = read_file('src/template/project-card.html')
     cards = []
     if os.path.exists(projects_dir):
-        for f in sorted(os.listdir(projects_dir)):
-            if not f.endswith('.html'):
-                continue
-            raw = read_file(os.path.join(projects_dir, f))
-            slug = slugify(f)
-            data = parse_project(raw)
+        json_files = [f for f in os.listdir(projects_dir) if f.endswith('.json')]
+        json_files.sort(key=lambda f: json.load(open(os.path.join(projects_dir, f), encoding='utf-8'))['order'])
 
-            cards.append(make_card_link(raw, slug))
+        for f in json_files:
+            slug = slugify(f)
+            with open(os.path.join(projects_dir, f), 'r', encoding='utf-8') as jf:
+                data = json.load(jf)
+
+            cards.append(make_card(card_template, data, slug))
 
             detail_content = make_detail_content(data)
             write_file(
