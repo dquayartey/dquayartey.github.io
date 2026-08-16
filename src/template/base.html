@@ -63,6 +63,7 @@
     // ── Project Modal ──
     const overlay = document.getElementById('projectModal');
     const modalInner = document.getElementById('modalInner');
+    let modalOpen = false;
 
     function openModal(card) {
       const data = card.dataset;
@@ -83,7 +84,7 @@
 
       modalInner.innerHTML = `
         <div class="modal-hero">
-          <img src="${data.img}" alt="${data.title}" style="width:100%;height:100%;object-fit:cover;display:block;">
+          <img src="${data.img}" alt="${data.title}">
         </div>
         <div class="modal-body">
           <div class="modal-title-row">
@@ -107,27 +108,20 @@
           </div>` : ''}
         </div>`;
 
-      history.pushState({ modal: true }, '', '#project');
       overlay.classList.add('open');
-      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+      modalOpen = true;
       document.getElementById('modalClose').addEventListener('click', closeModal);
     }
 
     function closeModal() {
       overlay.classList.remove('open');
-      document.body.style.overflow = '';
-      if (location.hash === '#project') history.back();
+      document.documentElement.style.overflow = '';
+      modalOpen = false;
     }
 
-    window.addEventListener('popstate', e => {
-      if (overlay.classList.contains('open')) {
-        overlay.classList.remove('open');
-        document.body.style.overflow = '';
-      }
-    });
-
     overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && modalOpen) closeModal(); });
 
     document.querySelectorAll('.project-card').forEach(card => {
       card.addEventListener('click', () => openModal(card));
