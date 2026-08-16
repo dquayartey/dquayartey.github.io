@@ -48,8 +48,8 @@ def build_site():
     footer = read_file('src/partials/footer.html')
 
     # 1. About / Index
-    about_links = [('intro', 'Introduction'), ('expertise', 'Technical Expertise'), ('approach', 'Engineering Philosophy')]
-    write_file('dist/index.html', build_page(base, nav, footer, 'About & Skills', read_file('src/pages/about.html'), about_links))
+    about_links = [('intro', 'Introduction'), ('bio', 'Background'), ('expertise', 'Technical Expertise'), ('approach', 'Engineering Philosophy')]
+    write_file('dist/index.html', build_page(base, nav, footer, 'About', read_file('src/pages/about.html'), about_links))
     print("  + dist/index.html")
 
     # 2. Portfolio

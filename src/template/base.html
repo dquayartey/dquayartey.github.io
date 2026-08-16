@@ -72,7 +72,7 @@
       const body = JSON.parse(data.body || '[]');
 
       const actionsHtml = actions.map(a =>
-        `<a href="${a.url}" target="_blank" class="modal-btn ${a.primary ? 'modal-btn-primary' : 'modal-btn-secondary'}">
+        `<a href="${a.url}" target="_blank" class="modal-btn ${a.primary ? 'modal-btn-primary' : 'modal-btn-secondary'}" onclick="event.stopPropagation()">
           <i class="${a.icon}"></i> ${a.label}
         </a>`
       ).join('');
@@ -83,7 +83,7 @@
 
       modalInner.innerHTML = `
         <div class="modal-hero">
-          <img src="${data.img}" alt="${data.title}">
+          <img src="${data.img}" alt="${data.title}" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
         <div class="modal-body">
           <div class="modal-title-row">
@@ -107,6 +107,7 @@
           </div>` : ''}
         </div>`;
 
+      history.pushState({ modal: true }, '', '#project');
       overlay.classList.add('open');
       document.body.style.overflow = 'hidden';
       document.getElementById('modalClose').addEventListener('click', closeModal);
@@ -115,7 +116,15 @@
     function closeModal() {
       overlay.classList.remove('open');
       document.body.style.overflow = '';
+      if (location.hash === '#project') history.back();
     }
+
+    window.addEventListener('popstate', e => {
+      if (overlay.classList.contains('open')) {
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+    });
 
     overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
