@@ -2,6 +2,7 @@ import os
 import re
 import json
 import shutil
+import prepare_content
 
 def read_file(filepath):
     with open(filepath, 'r', encoding='utf-8') as f:
@@ -90,6 +91,9 @@ def build_page(base, nav, footer, title, content, sidebar_links, base_prefix='')
 
 def build_site():
     print("🚀 Starting build process...")
+
+    # Regenerate project JSON from src/content/*.txt before building pages
+    prepare_content.run()
 
     if os.path.exists('dist'):
         shutil.rmtree('dist')

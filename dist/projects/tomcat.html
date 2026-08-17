@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tomcat Events — Event Ticketing Platform | David Quayartey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+  <nav>
+  <div class="container nav-inner">
+    <a href="../index.html" class="logo">&lt;DQ /&gt;</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">About</a></li>
+      <li><a href="../portfolio.html">Portfolio</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+  <div class="page-wrapper">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-toggle" id="sidebarToggle">
+    <i class="fa-solid fa-chevrons-left"></i>
+    <span>On this page</span>
+  </button>
+  <div class="sidebar-content">
+    <div class="sidebar-label">Navigation</div>
+    <ul class="sidebar-nav"><li><a href="#overview">Overview</a></li></ul>
+  </div>
+</aside>
+
+    <div class="content-area">
+      <main class="container">
+        <article class="project-detail section-anchor" id="overview">
+  <a href="../portfolio.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</a>
+  <div class="detail-hero">
+    <img src="../assets/projects/tomcat.jpg" alt="Tomcat Events — Event Ticketing Platform">
+    
+  </div>
+  <div class="detail-title-row">
+    <h1 class="detail-title">Tomcat Events — Event Ticketing Platform</h1>
+    <span class="detail-period">Aug 2026 – Aug 2026</span>
+  </div>
+  <div class="modal-actions"><a href="https://www.tomcateventslimited.site/" target="_blank" class="modal-btn modal-btn-primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a><a href="https://github.com/dquayartey/tomcat-event-ticketing" target="_blank" class="modal-btn modal-btn-secondary"><i class="fa-brands fa-github"></i> Repository</a></div>
+  <div class="modal-section">
+    <h3 class="detail-section-heading">What Was Built</h3><p>Tomcat Events is a fully serverless event registration and ticketing platform built on AWS, designed to handle high-concurrency ticket sales without the cost or complexity of managing persistent servers. The platform features event discovery, attendee registration, and automated confirmation workflows, all triggered on demand through Lambda-backed API endpoints. Its static frontend assets are hosted on Amazon S3 and delivered globally through Amazon CloudFront with Origin Access Control (OAC) enforced, ensuring the raw S3 bucket is never directly accessible. Transport security is enforced end-to-end using custom SSL/TLS certificates managed by AWS Certificate Manager (ACM). The backend registration pipeline includes an automated ID parsing microservice that extracts and validates attendee information from submitted documents, reducing manual data entry overhead for event organizers. Attendance data, user records, and registration payloads are processed by AWS Lambda functions and persisted directly into Amazon DynamoDB for reporting. Operational visibility and system health are monitored through proactive Amazon CloudWatch alarms configured to track Lambda execution error rates, API Gateway 5xx response codes, and DynamoDB throughput throttling events.</p><h3 class="detail-section-heading">Why Was It Built</h3><p>Ticketing and event registration platforms experience extreme traffic volatility, switching from complete inactivity to thousands of concurrent requests the moment ticket sales open. Traditional server architectures often fail under these sudden bursts unless expensive, over-provisioned infrastructure is maintained continuously. Tomcat Events was built to eliminate these financial and operational inefficiencies by implementing a cloud-native, zero-idle-cost platform that scales automatically from zero to high concurrency. The platform was also developed as part of a cloud computing program milestone, serving as a practical demonstration of serverless microservice design, automated document processing workflows, robust CloudWatch operational monitoring, and secure static web hosting on AWS.</p><h3 class="detail-section-heading">How It Works</h3><p>When an attendee visits the platform, the client browser fetches the static single-page interface from the nearest Amazon CloudFront edge location, achieving fast sub-50ms delivery while keeping the underlying S3 origin bucket private via Origin Access Control. User interactions, such as browsing events or submitting a ticket registration, trigger HTTPS REST requests to Amazon API Gateway. API Gateway routes the payload to specific AWS Lambda microservices running a Python execution environment. For registration workflows involving identification verification, the dedicated Lambda function receives the document payload, executes automated parsing and validation logic, and writes the structured attendee profile directly into Amazon DynamoDB. Concurrently, CloudWatch collects performance metrics, log groups, and error indicators across every layer of the architecture, automatically firing alerts if latency thresholds or operational failure rates are exceeded.</p><h3 class="detail-section-heading">What Broke and How Did I Fix It</h3><p>During system testing and infrastructure deployment, several critical architectural hurdles were encountered and resolved. A major initial issue involved permission errors and HTTP 403 Access Denied responses when accessing static web assets through CloudFront. This was caused by legacy S3 bucket policies expecting an Origin Access Identity (OAI) rather than the newer Origin Access Control (OAC) standard, which was fixed by updating the CloudFront distribution to use OAC, modifying the S3 bucket policy to explicitly restrict `s3:GetObject` access strictly to the CloudFront Service Principal, and disabling public access. Additionally, early Lambda executions for document parsing experienced timeouts when processing larger payload sizes, which was resolved by tuning the Lambda function memory allocation and optimizing the memory-to-CPU ratio to accelerate parsing tasks. Finally, initial DynamoDB write operations during registration spikes triggered intermittent write throttling errors, which was addressed by configuring dynamic auto-scaling policies on the DynamoDB table throughput metrics and establishing CloudWatch alarm thresholds to proactively catch throttled requests before impacting end users.</p>
+  </div>
+  <div class="modal-section"><div class="modal-section-title">Key Highlights</div><ul class="modal-highlights"><li>CloudFront OAC enforced — S3 bucket never directly accessible from the internet</li><li>Automated ID parsing workflow reduces manual attendee data entry</li><li>Proactive CloudWatch alarms on Lambda errors, API 5xx, and DynamoDB throttles</li><li>ACM SSL with automatic certificate renewal — zero manual certificate management</li><li>Fully serverless — zero fixed infrastructure cost between events</li></ul></div>
+  <div class="modal-section"><div class="modal-section-title">Tech Stack</div><div class="modal-tags"><span class="modal-tag">AWS SAM</span><span class="modal-tag">API Gateway</span><span class="modal-tag">AWS Lambda</span><span class="modal-tag">Amazon S3</span><span class="modal-tag">CloudFront (OAC)</span><span class="modal-tag">ACM SSL</span><span class="modal-tag">CloudWatch Alarms</span><span class="modal-tag">Python</span><span class="modal-tag">Serverless</span></div></div>
+</article>
+      </main>
+    </div>
+  </div>
+
+  <footer>
+  <div class="social-links">
+    <a href="https://github.com/dquayartey" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+    <a href="https://linkedin.com/in/quayarteydavid" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+    <a href="mailto:quayarteydave@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+  </div>
+  <p>© 2026 David Quayartey. Cloud & DevOps Architecture.</p>
+</footer>
+
+
+  <script>
+    // ── Active nav pill ──
+    const currentPage = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      if (a.getAttribute('href') === currentPage) a.classList.add('active');
+    });
+
+    // ── Sidebar toggle ──
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('sidebarToggle');
+    if (sidebar && toggleBtn) {
+      toggleBtn.addEventListener('click', () => sidebar.classList.toggle('collapsed'));
+    }
+
+    // ── Sidebar active link on scroll ──
+    const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+    if (sidebarLinks.length) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            sidebarLinks.forEach(l => l.classList.remove('active'));
+            const match = document.querySelector(`.sidebar-nav a[href="#${e.target.id}"]`);
+            if (match) match.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-30% 0px -60% 0px' });
+      document.querySelectorAll('.section-anchor').forEach(s => observer.observe(s));
+    }
+  </script>
+
+</body>
+</html>

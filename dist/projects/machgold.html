@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MachGold — Multi-Asset Algorithmic Trading System | David Quayartey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+  <nav>
+  <div class="container nav-inner">
+    <a href="../index.html" class="logo">&lt;DQ /&gt;</a>
+    <ul class="nav-links">
+      <li><a href="../index.html">About</a></li>
+      <li><a href="../portfolio.html">Portfolio</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+  <div class="page-wrapper">
+    <aside class="sidebar" id="sidebar">
+  <button class="sidebar-toggle" id="sidebarToggle">
+    <i class="fa-solid fa-chevrons-left"></i>
+    <span>On this page</span>
+  </button>
+  <div class="sidebar-content">
+    <div class="sidebar-label">Navigation</div>
+    <ul class="sidebar-nav"><li><a href="#overview">Overview</a></li></ul>
+  </div>
+</aside>
+
+    <div class="content-area">
+      <main class="container">
+        <article class="project-detail section-anchor" id="overview">
+  <a href="../portfolio.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Portfolio</a>
+  <div class="detail-hero">
+    <img src="../assets/projects/machgold.jpg" alt="MachGold — Multi-Asset Algorithmic Trading System">
+    
+  </div>
+  <div class="detail-title-row">
+    <h1 class="detail-title">MachGold — Multi-Asset Algorithmic Trading System</h1>
+    <span class="detail-period">Mar 2026 – Aug 2026</span>
+  </div>
+  <div class="modal-actions"><a href="https://github.com/dquayartey/cTrader-codes" target="_blank" class="modal-btn modal-btn-primary"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo</a><a href="https://github.com/dquayartey/cTrader-codes" target="_blank" class="modal-btn modal-btn-secondary"><i class="fa-brands fa-github"></i> Repository</a></div>
+  <div class="modal-section">
+    <h3 class="detail-section-heading">What Was Built</h3><p>MachGold is an automated, multi-asset algorithmic trading bot developed in C# utilizing the cTrader/cAlgo API, designed to execute quantitative trading strategies across forex pairs and global indices without manual intervention. The platform features a multi-layer signal confirmation engine that combines exponential moving average (EMA) trend detection, Stochastic Oscillator momentum, Relative Strength Index (RSI) confirmation, and Average True Range (ATR) volatility filtering. It implements an independent per-asset direction locking mechanism along with virtual stop-loss and take-profit calculations based on dynamic ATR multiples to maintain disciplined risk management. To facilitate strategy iteration, the project includes cross-platform implementations in Pine Script for TradingView visual analysis and MQL5 for MetaTrader 5 backtesting. The final cBot is deployed on cTrader cloud instances to ensure continuous, low-latency tick processing and execution across 14 financial instruments simultaneously.</p><h3 class="detail-section-heading">Why Was It Built</h3><p>Manual trading is inherently vulnerable to emotional bias, execution delays, and inconsistent risk application, particularly when attempting to monitor multiple financial instruments concurrently. MachGold was built to eliminate human discretionary errors by creating a fully automated, rule-based execution model capable of maintaining strict trade discipline across volatile market regimes. The project was designed to systematically isolate high-probability setups by validating indicator combinations against historical price data before allocating live capital. Additionally, it served as an engineering platform to test and refine quantitative strategies, isolate performance drivers, and manage live capital on funded proprietary trading accounts under strict risk constraints.</p><h3 class="detail-section-heading">How It Works</h3><p>The system operates directly on live tick data ingested through cTrader cloud instances. On every price update, the cBot evaluates the trend direction across configured charts using dynamic EMA thresholds. Before generating an execution order, the signal must pass through a strict, multi-tiered confirmation pipeline: the Stochastic Oscillator confirms underlying momentum alignment, the RSI verifies that the asset is neither overbought nor oversold beyond acceptable limits, and ATR filters measure current volatility to prevent entering trades during flat or illiquid periods. Each instrument maintains its own tunable parameters, allowing confirmation strictness to be adjusted per asset class. Once a valid signal is confirmed, the cBot calculates position sizing, applies per-asset direction locking to prevent conflicting positions, and projects virtual stop-loss and take-profit levels directly onto the trade payload before routing the order for automated cloud execution.</p><h3 class="detail-section-heading">What Broke and How Did I Fix It</h3><p>During development and live cloud deployment, several technical and risk-management challenges emerged. Early multi-asset backtests revealed that a single global set of confirmation parameters caused severe over-trading on volatile indices while missing valid entries on major forex pairs. This was fixed by refactoring the codebase to support independently tunable indicator thresholds and ATR multipliers mapped to specific asset classes. In live testing on a funded prop trading account, sudden geopolitical volatility (such as US–Iran tensions) caused elevated drawdown when market gaps bypassed standard entry filters. This was addressed by implementing an automated news and volatility guardrail that tightens entry criteria or pauses new order generation during high-impact economic events. Finally, multi-chart execution on cTrader cloud instances initially encountered tick-processing race conditions across 14 simultaneously monitored assets, which was resolved by optimizing event-handling loops and implementing explicit thread safety for state synchronization across chart objects.</p>
+  </div>
+  
+  <div class="modal-section"><div class="modal-section-title">Tech Stack</div><div class="modal-tags"><span class="modal-tag">C#</span><span class="modal-tag">cTrader API</span><span class="modal-tag">cAlgo</span><span class="modal-tag">MQL5</span><span class="modal-tag">Pine Script</span><span class="modal-tag">Algorithmic Trading</span><span class="modal-tag">Backtesting</span><span class="modal-tag">Automated Risk Management</span></div></div>
+</article>
+      </main>
+    </div>
+  </div>
+
+  <footer>
+  <div class="social-links">
+    <a href="https://github.com/dquayartey" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+    <a href="https://linkedin.com/in/quayarteydavid" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+    <a href="mailto:quayarteydave@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+  </div>
+  <p>© 2026 David Quayartey. Cloud & DevOps Architecture.</p>
+</footer>
+
+
+  <script>
+    // ── Active nav pill ──
+    const currentPage = location.pathname.split('/').pop() || 'index.html';
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      if (a.getAttribute('href') === currentPage) a.classList.add('active');
+    });
+
+    // ── Sidebar toggle ──
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('sidebarToggle');
+    if (sidebar && toggleBtn) {
+      toggleBtn.addEventListener('click', () => sidebar.classList.toggle('collapsed'));
+    }
+
+    // ── Sidebar active link on scroll ──
+    const sidebarLinks = document.querySelectorAll('.sidebar-nav a');
+    if (sidebarLinks.length) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            sidebarLinks.forEach(l => l.classList.remove('active'));
+            const match = document.querySelector(`.sidebar-nav a[href="#${e.target.id}"]`);
+            if (match) match.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-30% 0px -60% 0px' });
+      document.querySelectorAll('.section-anchor').forEach(s => observer.observe(s));
+    }
+  </script>
+
+</body>
+</html>

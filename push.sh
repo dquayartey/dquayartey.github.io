@@ -3,7 +3,10 @@ set -e
 
 cd "$(dirname "$0")"
 
-if [[ -z $(git status --porcelain) ]]; then
+echo "🔨 Building site locally to check for errors..."
+python3 build/build.py
+
+if [[ -z $(git status --porcelain -- src build) ]]; then
   echo "Nothing to commit — working tree clean."
   exit 0
 fi

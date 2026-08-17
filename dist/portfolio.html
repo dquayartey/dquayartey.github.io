@@ -23,7 +23,6 @@
   </div>
 </nav>
 
-
   <div class="page-wrapper">
     <aside class="sidebar" id="sidebar">
   <button class="sidebar-toggle" id="sidebarToggle">
@@ -44,130 +43,108 @@
 </section>
 
 <section class="portfolio-list">
-  <article class="project-card"
-  data-title="CampusAI — Serverless AI Support Assistant"
-  data-img="assets/projects/campusai.jpg"
-  data-actions='[{"label":"Live Demo","url":"https://campusai.site","icon":"fa-solid fa-arrow-up-right-from-square","primary":true},{"label":"Repository","url":"https://github.com/dquayartey/student-support-ai-api","icon":"fa-brands fa-github","primary":false}]'
-  data-tags='["AWS SAM","AWS Lambda","API Gateway","Amazon DynamoDB","Amazon Cognito","Amazon CloudFront","Amazon S3","Groq AI (Llama 3.3 70B)","GitHub Actions (OIDC)","Python 3.12"]'
-  data-body='[
-    "CampusAI is a 24/7 serverless student support platform built entirely on AWS, designed to eliminate the overhead of fixed compute while delivering instant, context-aware answers to academic, administrative, and financial inquiries. The system is powered by the Groq inference engine running Llama 3.3 70B — one of the fastest open-weight LLMs available — enabling sub-second response times at scale.",
-    "The backend is composed of four Python 3.12 Lambda microservices orchestrated behind Amazon API Gateway with Cognito JWT authorization on every protected route. User conversations are persisted to DynamoDB with full chat thread reconstruction, allowing students to resume sessions across devices. A dedicated public FAQ endpoint serves pre-configured campus information without requiring authentication.",
-    "The entire infrastructure is declared as code using AWS SAM and deployed through a GitHub Actions OIDC pipeline — meaning there are zero long-lived AWS credentials in CI. Every push to main triggers a sam build and sam deploy, with CloudFormation managing stack drift detection and rollback. The Groq API key is injected as a NoEcho CloudFormation parameter, keeping secrets out of version control and deployment logs entirely.",
-    "The frontend is a single-page HTML/JS application hosted on S3 and served globally via CloudFront with Origin Access Control (OAC), ensuring the S3 bucket is never directly accessible. ACM-issued SSL certificates enforce HTTPS end-to-end. The result is a zero-idle-cost platform that scales from zero to thousands of concurrent users with no infrastructure management overhead."
-  ]'
-  data-highlights='[
-    "Multi-turn conversation memory with DynamoDB-backed chat thread persistence",
-    "OIDC-based GitHub Actions CI/CD — no long-lived AWS credentials in CI",
-    "Groq Llama 3.3 70B inference delivering sub-second AI response times",
-    "CloudFront OAC + ACM SSL for secure, globally distributed frontend delivery",
-    "Zero-idle serverless architecture — cost scales linearly with actual usage"
-  ]'
-  tabindex="0" role="button" aria-label="View CampusAI project details">
+  <a class="project-card" href="projects/aggregator.html" aria-label="View MachGold Portfolio Aggregator — Multi-Asset Backtest Simulation Tool project details">
   <div class="project-media">
-    <img src="assets/projects/campusai.jpg" alt="CampusAI Project Screenshot" class="project-img">
+    <img src="assets/projects/machgold-aggregator.jpg" alt="MachGold Portfolio Aggregator — Multi-Asset Backtest Simulation Tool Screenshot" class="project-img">
+    
+  </div>
+  <div class="project-content">
+    <div class="project-meta">
+      <h2>MachGold Portfolio Aggregator — Multi-Asset Backtest Simulation Tool</h2>
+      <span class="project-period">Mar 2026 – Aug 2026</span>
+    </div>
+    <p class="project-summary">A custom C# cTrader plugin and simulation engine that ingests JSON backtest exports to model real-world shared-capital drawdown, chronological trade overlap, and account state transitions across multiple assets.</p>
+    <div class="project-footer">
+      <div class="tag-list"><span class="tag">C#</span><span class="tag">.NET</span><span class="tag">cTrader Plugin API</span><span class="tag">JSON Parsing</span><span class="tag">Portfolio Simulation</span></div>
+      <span class="card-cta">View details <i class="fa-solid fa-arrow-right"></i></span>
+    </div>
+  </div>
+</a>
+<a class="project-card" href="projects/campusai.html" aria-label="View CampusAI — Serverless AI Support Assistant project details">
+  <div class="project-media">
+    <img src="assets/projects/campusai.jpg" alt="CampusAI — Serverless AI Support Assistant Screenshot" class="project-img">
+    
   </div>
   <div class="project-content">
     <div class="project-meta">
       <h2>CampusAI — Serverless AI Support Assistant</h2>
+      <span class="project-period">Jan 2026 – Mar 2026</span>
     </div>
     <p class="project-summary">A 24/7 zero-idle serverless student support application delivering multi-turn conversation memory using Groq (Llama 3.3 70B), Python AWS Lambda, API Gateway, and DynamoDB. Deployed via OIDC GitHub Actions pipelines with no long-lived credentials.</p>
     <div class="project-footer">
-      <div class="tag-list">
-        <span class="tag">AWS SAM</span>
-        <span class="tag">AWS Lambda</span>
-        <span class="tag">DynamoDB</span>
-        <span class="tag">Groq AI</span>
-        <span class="tag">GitHub Actions (OIDC)</span>
-      </div>
+      <div class="tag-list"><span class="tag">AWS SAM</span><span class="tag">AWS Lambda</span><span class="tag">API Gateway</span><span class="tag">Amazon DynamoDB</span><span class="tag">Amazon Cognito</span></div>
       <span class="card-cta">View details <i class="fa-solid fa-arrow-right"></i></span>
     </div>
   </div>
-</article>
-
-<article class="project-card"
-  data-title="Tomcat Events — Event Ticketing Platform"
-  data-img="assets/projects/tomcat.jpg"
-  data-actions='[
-    {"label":"Live Demo","url":"https://www.tomcateventslimited.site/","icon":"fa-solid fa-arrow-up-right-from-square","primary":true},
-    {"label":"Repository","url":"https://github.com/EAkatse/tomcat-student-support-ai-api","icon":"fa-brands fa-github","primary":false}
-  ]'
-  data-tags='["AWS SAM","API Gateway","AWS Lambda","Amazon S3","CloudFront (OAC)","ACM SSL","CloudWatch Alarms","Python","Serverless"]'
-  data-body='[
-    "Tomcat Events is a fully serverless event registration and ticketing platform built on AWS, designed to handle high-concurrency ticket sales without the cost or complexity of managing persistent servers. The platform supports event discovery, attendee registration, and automated confirmation workflows — all triggered on demand through Lambda-backed API endpoints.",
-    "Static frontend assets are hosted on Amazon S3 and delivered globally through Amazon CloudFront with Origin Access Control (OAC) enforced, ensuring the S3 bucket is never publicly accessible. ACM-issued SSL certificates provide end-to-end HTTPS encryption. This architecture eliminates the need for a traditional web server while achieving sub-50ms global asset delivery through CloudFront edge caching.",
-    "The backend registration workflow includes an automated ID parsing pipeline that extracts and validates attendee information from submitted documents, reducing manual data entry overhead for event organizers. Lambda functions handle the parsing logic, with results written to DynamoDB for persistent attendee records and downstream reporting.",
-    "Operational visibility is maintained through a suite of proactive CloudWatch alarms configured to alert on Lambda error rates, API Gateway 5xx responses, and DynamoDB throttling events. This ensures the operations team is notified before issues impact attendees, supporting the platform'\''s commitment to reliable, high-availability event experiences."
-  ]'
-  data-highlights='[
-    "CloudFront OAC enforced — S3 bucket never directly accessible from the internet",
-    "Automated ID parsing workflow reduces manual attendee data entry",
-    "Proactive CloudWatch alarms on Lambda errors, API 5xx, and DynamoDB throttles",
-    "ACM SSL with automatic certificate renewal — zero manual certificate management",
-    "Fully serverless — zero fixed infrastructure cost between events"
-  ]'
-  tabindex="0" role="button" aria-label="View Tomcat Events project details">
+</a>
+<a class="project-card" href="projects/ember.html" aria-label="View Ember & Root — Highly Available Web Infrastructure project details">
   <div class="project-media">
-    <img src="assets/projects/tomcat.jpg" alt="Tomcat Events Screenshot" class="project-img">
+    <img src="assets/projects/ember.jpg" alt="Ember & Root — Highly Available Web Infrastructure Screenshot" class="project-img">
+    
+  </div>
+  <div class="project-content">
+    <div class="project-meta">
+      <h2>Ember & Root — Highly Available Web Infrastructure</h2>
+      <span class="project-period">Jul 2026 – Jul 2026</span>
+    </div>
+    <p class="project-summary">A multi-AZ, highly available restaurant web platform on AWS using an Application Load Balancer, Auto Scaling Group of EC2 instances, and CloudFront-backed S3 static asset delivery — built to absorb unpredictable traffic spikes with zero manual intervention.</p>
+    <div class="project-footer">
+      <div class="tag-list"><span class="tag">Amazon EC2</span><span class="tag">Application Load Balancer</span><span class="tag">Auto Scaling Group</span><span class="tag">Amazon VPC</span><span class="tag">Amazon S3</span></div>
+      <span class="card-cta">View details <i class="fa-solid fa-arrow-right"></i></span>
+    </div>
+  </div>
+</a>
+<a class="project-card" href="projects/machgold.html" aria-label="View MachGold — Multi-Asset Algorithmic Trading System project details">
+  <div class="project-media">
+    <img src="assets/projects/machgold.jpg" alt="MachGold — Multi-Asset Algorithmic Trading System Screenshot" class="project-img">
+    
+  </div>
+  <div class="project-content">
+    <div class="project-meta">
+      <h2>MachGold — Multi-Asset Algorithmic Trading System</h2>
+      <span class="project-period">Mar 2026 – Aug 2026</span>
+    </div>
+    <p class="project-summary">A multi-asset algorithmic trading bot written in C# for cTrader, combining EMA trend detection, Stochastic/RSI momentum confirmation, and ATR volatility-based risk management across forex pairs and indices.</p>
+    <div class="project-footer">
+      <div class="tag-list"><span class="tag">C#</span><span class="tag">cTrader API</span><span class="tag">cAlgo</span><span class="tag">MQL5</span><span class="tag">Pine Script</span></div>
+      <span class="card-cta">View details <i class="fa-solid fa-arrow-right"></i></span>
+    </div>
+  </div>
+</a>
+<a class="project-card" href="projects/securecheck.html" aria-label="View Envestorr SecureCheck — Cybersecurity Diagnostic Tool project details">
+  <div class="project-media">
+    <img src="assets/projects/securecheck-diagnostic.jpg" alt="Envestorr SecureCheck — Cybersecurity Diagnostic Tool Screenshot" class="project-img">
+    
+  </div>
+  <div class="project-content">
+    <div class="project-meta">
+      <h2>Envestorr SecureCheck — Cybersecurity Diagnostic Tool</h2>
+      <span class="project-period">Jun 2026 – Aug 2026</span>
+    </div>
+    <p class="project-summary">A serverless web application combining a GitHub Pages frontend with a Google Apps Script API to deliver real-time risk assessments, automated lead logging, and consultation scheduling.</p>
+    <div class="project-footer">
+      <div class="tag-list"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Google Apps Script</span><span class="tag">REST API</span></div>
+      <span class="card-cta">View details <i class="fa-solid fa-arrow-right"></i></span>
+    </div>
+  </div>
+</a>
+<a class="project-card" href="projects/tomcat.html" aria-label="View Tomcat Events — Event Ticketing Platform project details">
+  <div class="project-media">
+    <img src="assets/projects/tomcat.jpg" alt="Tomcat Events — Event Ticketing Platform Screenshot" class="project-img">
+    
   </div>
   <div class="project-content">
     <div class="project-meta">
       <h2>Tomcat Events — Event Ticketing Platform</h2>
+      <span class="project-period">Aug 2026 – Aug 2026</span>
     </div>
     <p class="project-summary">A serverless event registration platform featuring automated ID parsing workflows, Amazon S3 static hosting secured via CloudFront OAC, ACM SSL end-to-end encryption, and proactive CloudWatch operational alarms.</p>
     <div class="project-footer">
-      <div class="tag-list">
-        <span class="tag">AWS SAM</span>
-        <span class="tag">API Gateway</span>
-        <span class="tag">CloudFront (OAC)</span>
-        <span class="tag">CloudWatch</span>
-      </div>
+      <div class="tag-list"><span class="tag">AWS SAM</span><span class="tag">API Gateway</span><span class="tag">AWS Lambda</span><span class="tag">Amazon S3</span><span class="tag">CloudFront (OAC)</span></div>
       <span class="card-cta">View details <i class="fa-solid fa-arrow-right"></i></span>
     </div>
   </div>
-</article>
-
-<article class="project-card"
-  data-title="Ember & Root Restaurant — Web Architecture"
-  data-img="assets/projects/ember.jpg"
-  data-actions='[
-    {"label":"Live Demo","url":"https://lnkd.in/etgDMRYG","icon":"fa-solid fa-arrow-up-right-from-square","primary":true},
-    {"label":"Repository","url":"https://lnkd.in/eUUX_U6h","icon":"fa-brands fa-github","primary":false}
-  ]'
-  data-tags='["AWS EC2","Application Load Balancer","Auto Scaling Groups","Amazon S3","CloudFront (OAC)","Apache HTTP Server","Launch Templates","VPC & Subnets"]'
-  data-body='[
-    "Ember & Root is a highly available web infrastructure project built on AWS for a restaurant brand, demonstrating production-grade EC2-based architecture patterns. The system is designed to handle variable traffic loads — from quiet weekday browsing to peak weekend reservation surges — without manual intervention or service degradation.",
-    "At the core of the architecture is an Application Load Balancer (ALB) distributing HTTP/HTTPS traffic across an Auto Scaling Group (ASG) of EC2 instances running Apache HTTP Server. The ASG is configured with scaling policies tied to CPU utilization and request count metrics, automatically provisioning or terminating instances to match real-time demand while maintaining a minimum healthy instance count for baseline availability.",
-    "Static assets — images, CSS, JavaScript bundles — are offloaded from the EC2 instances to Amazon S3 and served through CloudFront with Origin Access Control (OAC). This separation of concerns reduces the compute load on backend instances, improves global asset delivery latency through edge caching, and ensures the S3 origin is never directly exposed to the public internet.",
-    "The infrastructure is defined using EC2 Launch Templates, enabling consistent, repeatable instance configuration across all ASG members. VPC design follows a multi-AZ subnet layout with public subnets for the ALB and private subnets for the application tier, enforcing network-level isolation between the load balancer and backend compute resources."
-  ]'
-  data-highlights='[
-    "Multi-AZ ALB + ASG architecture with CPU and request-based auto scaling policies",
-    "Static asset offloading to S3 + CloudFront OAC — reduces EC2 compute load",
-    "Launch Templates ensure consistent, repeatable instance configuration across ASG",
-    "VPC multi-AZ subnet design with public ALB tier and private application tier",
-    "Apache HTTP Server configured for reverse proxy and static content serving"
-  ]'
-  tabindex="0" role="button" aria-label="View Ember and Root project details">
-  <div class="project-media">
-    <img src="assets/projects/ember.jpg" alt="Ember & Root Screenshot" class="project-img">
-  </div>
-  <div class="project-content">
-    <div class="project-meta">
-      <h2>Ember & Root Restaurant — Web Architecture</h2>
-    </div>
-    <p class="project-summary">A highly available web infrastructure on AWS featuring an Application Load Balancer, Auto Scaling Groups running Apache backend servers, and S3 asset offloading behind CloudFront OAC for global edge delivery.</p>
-    <div class="project-footer">
-      <div class="tag-list">
-        <span class="tag">AWS EC2</span>
-        <span class="tag">ALB / ASG</span>
-        <span class="tag">S3 / OAC</span>
-        <span class="tag">Apache</span>
-      </div>
-      <span class="card-cta">View details <i class="fa-solid fa-arrow-right"></i></span>
-    </div>
-  </div>
-</article>
-
+</a>
 </section>
 
       </main>
@@ -183,11 +160,6 @@
   <p>© 2026 David Quayartey. Cloud & DevOps Architecture.</p>
 </footer>
 
-
-  <!-- Project Detail Modal -->
-  <div class="modal-overlay" id="projectModal" role="dialog" aria-modal="true">
-    <div class="modal" id="modalInner"></div>
-  </div>
 
   <script>
     // ── Active nav pill ──
@@ -217,73 +189,6 @@
       }, { rootMargin: '-30% 0px -60% 0px' });
       document.querySelectorAll('.section-anchor').forEach(s => observer.observe(s));
     }
-
-    // ── Project Modal ──
-    const overlay = document.getElementById('projectModal');
-    const modalInner = document.getElementById('modalInner');
-    let modalOpen = false;
-
-    function openModal(card) {
-      const data = card.dataset;
-      const actions = JSON.parse(data.actions || '[]');
-      const tags = JSON.parse(data.tags || '[]');
-      const highlights = JSON.parse(data.highlights || '[]');
-      const body = JSON.parse(data.body || '[]');
-
-      const actionsHtml = actions.map(a =>
-        `<a href="${a.url}" target="_blank" class="modal-btn ${a.primary ? 'modal-btn-primary' : 'modal-btn-secondary'}" onclick="event.stopPropagation()">
-          <i class="${a.icon}"></i> ${a.label}
-        </a>`
-      ).join('');
-
-      const tagsHtml = tags.map(t => `<span class="modal-tag">${t}</span>`).join('');
-      const bodyHtml = body.map(p => `<p>${p}</p>`).join('');
-      const highlightsHtml = highlights.map(h => `<li>${h}</li>`).join('');
-
-      modalInner.innerHTML = `
-        <div class="modal-hero">
-          <img src="${data.img}" alt="${data.title}">
-        </div>
-        <div class="modal-body">
-          <div class="modal-title-row">
-            <h2 class="modal-title">${data.title}</h2>
-            <button class="modal-close" id="modalClose" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
-          </div>
-          ${actionsHtml ? `<div class="modal-actions">${actionsHtml}</div>` : ''}
-          <div class="modal-section">
-            <div class="modal-section-title">Overview</div>
-            ${bodyHtml}
-          </div>
-          ${highlightsHtml ? `
-          <div class="modal-section">
-            <div class="modal-section-title">Key Highlights</div>
-            <ul class="modal-highlights">${highlightsHtml}</ul>
-          </div>` : ''}
-          ${tagsHtml ? `
-          <div class="modal-section">
-            <div class="modal-section-title">Tech Stack</div>
-            <div class="modal-tags">${tagsHtml}</div>
-          </div>` : ''}
-        </div>`;
-
-      overlay.classList.add('open');
-      document.documentElement.style.overflow = 'hidden';
-      modalOpen = true;
-      document.getElementById('modalClose').addEventListener('click', closeModal);
-    }
-
-    function closeModal() {
-      overlay.classList.remove('open');
-      document.documentElement.style.overflow = '';
-      modalOpen = false;
-    }
-
-    overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape' && modalOpen) closeModal(); });
-
-    document.querySelectorAll('.project-card').forEach(card => {
-      card.addEventListener('click', () => openModal(card));
-    });
   </script>
 
 </body>

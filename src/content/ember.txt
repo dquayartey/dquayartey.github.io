@@ -1,9 +1,18 @@
-PERIOD: Aug 2026 – Aug 2026
+TITLE: Ember & Root — Highly Available Web Infrastructure
+IMAGE: assets/projects/ember.jpg
+SUMMARY: A multi-AZ, highly available restaurant web platform on AWS using an Application Load Balancer, Auto Scaling Group of EC2 instances, and CloudFront-backed S3 static asset delivery — built to absorb unpredictable traffic spikes with zero manual intervention.
+TAGS: Amazon EC2, Application Load Balancer, Auto Scaling Group, Amazon VPC, Amazon S3, Amazon CloudFront, NAT Gateway, Apache HTTP Server
+PERIOD: Jul 2026 – Jul 2026
 STATUS: completed
-
-DEMO_URL: https://campusai.site
+DEMO_URL: https://emberrootrestaurant.com
 REPO_URL: https://github.com/dquayartey/aws-cloud-webapp-deployment
-
+HIGHLIGHTS:
+- Multi-AZ Application Load Balancer with Auto Scaling Group target tracking on CPU and request count
+- Static assets fully offloaded to S3 + CloudFront with Origin Access Control
+- Public/private subnet isolation — app instances never directly internet-facing
+- NAT Gateway-enabled outbound access for private instances without public exposure
+- Health check tuning for reliable rolling instance registration under load
+---
 **What Was Built**
 
 Ember & Root is a highly available, multi-AZ web infrastructure built on AWS for a restaurant brand, engineered to demonstrate production-grade EC2 compute and network architecture patterns. The system is designed to handle variable traffic loads, ranging from low-volume weekday browsing to peak weekend reservation surges, without requiring manual intervention or experiencing service degradation. At the center of the architecture is an Application Load Balancer (ALB) that distributes incoming web traffic across an Auto Scaling Group (ASG) of EC2 instances running Apache HTTP Server. The ASG utilizes EC2 Launch Templates to ensure consistent, repeatable configurations across all backend instances and is configured with target tracking scaling policies tied to CPU utilization and request count metrics. Static assets, including site imagery, stylesheets, and JavaScript bundles, are entirely offloaded from backend compute instances to an Amazon S3 storage bucket and delivered globally via Amazon CloudFront edge caching with Origin Access Control (OAC) enforced. The underlying network architecture is deployed across multiple Availability Zones inside a custom Virtual Private Cloud (VPC), establishing strict network isolation through public subnets for the load balancer and private subnets for the application instances.
