@@ -1,6 +1,6 @@
 {
   "title": "MachGold — Multi-Asset Algorithmic Trading System",
-  "img": "",
+  "img": "assets/projects/machgold.jpg",
   "summary": "A multi-asset algorithmic trading bot written in C# for cTrader, combining EMA trend detection, Stochastic/RSI momentum confirmation, and ATR volatility-based risk management across forex pairs and indices.",
   "period": "Aug 2026 – Aug 2026",
   "status": "active",
