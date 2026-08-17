@@ -4,8 +4,8 @@ SUMMARY: A serverless web application combining a GitHub Pages frontend with a G
 TAGS: HTML5, CSS3, JavaScript, Google Apps Script, REST API, Calendly API, Google Sheets API, Serverless Architecture
 PERIOD: Jun 2026 – Aug 2026
 STATUS: active
-DEMO_URL: [https://envestorr.github.io/SecureCheck-Vault-](https://www.google.com/search?q=https://envestorr.github.io/SecureCheck-Vault-)
-REPO_URL: [https://github.com/dquayartey/securecheck](https://www.google.com/search?q=https://github.com/dquayartey/securecheck)
+DEMO_URL: https://envestorr.github.io/SecureCheck-Vault-
+REPO_URL: https://github.com/dquayartey/securecheck
 HIGHLIGHTS:
 
 * Serverless architecture utilizing GitHub Pages for static hosting and Google Apps Script as a zero-cost API engine

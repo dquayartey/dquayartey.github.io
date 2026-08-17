@@ -7,13 +7,13 @@
   "actions": [
     {
       "label": "Live Demo",
-      "url": "[https://envestorr.github.io/SecureCheck-Vault-](https://www.google.com/search?q=https://envestorr.github.io/SecureCheck-Vault-)",
+      "url": "https://envestorr.github.io/SecureCheck-Vault-",
       "icon": "fa-solid fa-arrow-up-right-from-square",
       "primary": true
     },
     {
       "label": "Repository",
-      "url": "[https://github.com/dquayartey/securecheck](https://www.google.com/search?q=https://github.com/dquayartey/securecheck)",
+      "url": "https://github.com/dquayartey/securecheck",
       "icon": "fa-brands fa-github",
       "primary": false
     }
