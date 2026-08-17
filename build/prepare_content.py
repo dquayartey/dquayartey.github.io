@@ -5,6 +5,8 @@ from datetime import datetime
 
 CONTENT_DIR = 'src/content'
 PROJECTS_DIR = 'src/projects'
+ASSETS_PROJECTS_DIR = 'src/assets/projects'
+IMAGE_EXTENSIONS = ('.jpg', '.jpeg', '.png', '.webp', '.gif', '.svg')
 
 
 def slugify(filename):
@@ -42,7 +44,46 @@ def parse_period_end(period, status):
     return [0, 0]
 
 
-def parse_txt(raw, fallback_index):
+def resolve_image(image_field, slug):
+    """
+    Resolve the IMAGE field into an actual file path under src/assets/projects/.
+
+    - If IMAGE points to a file that literally exists (old-style full path,
+      e.g. 'assets/projects/campusai.jpg'), it's used as-is — fully backward
+      compatible with existing .txt files.
+    - Otherwise, IMAGE (or the slug, if IMAGE is blank) is treated as a
+      basename hint: any extension or directory the user included is
+      stripped, and the assets folder is searched case-insensitively for a
+      file whose name (minus extension) matches.
+
+    Returns (img_path, warning_or_None).
+    """
+    if image_field and os.path.isfile(image_field):
+        return image_field, None
+
+    search_name = os.path.splitext(os.path.basename(image_field))[0] if image_field else slug
+
+    if not os.path.isdir(ASSETS_PROJECTS_DIR):
+        return '', f"assets folder '{ASSETS_PROJECTS_DIR}' not found"
+
+    matches = sorted(
+        fname for fname in os.listdir(ASSETS_PROJECTS_DIR)
+        if os.path.splitext(fname)[1].lower() in IMAGE_EXTENSIONS
+        and os.path.splitext(fname)[0].lower() == search_name.lower()
+    )
+
+    if not matches:
+        return '', f"no image matching '{search_name}' found in {ASSETS_PROJECTS_DIR}"
+
+    chosen = matches[0]
+    warning = None
+    if len(matches) > 1:
+        warning = f"multiple images match '{search_name}' ({', '.join(matches)}) — using {chosen}"
+
+    return f'{ASSETS_PROJECTS_DIR}/{chosen}'.replace('src/', '', 1), warning
+
+
+def parse_txt(raw, fallback_index, slug):
     header_part, _, body_part = raw.partition('\n---\n')
     fields = {}
     highlights = []
@@ -83,10 +124,12 @@ def parse_txt(raw, fallback_index):
 
     status = fields.get('STATUS', 'completed').lower()
     period = fields.get('PERIOD', '')
+    img, img_warning = resolve_image(fields.get('IMAGE', ''), slug)
 
     return {
         'title': fields.get('TITLE', ''),
-        'img': fields.get('IMAGE', ''),
+        'img': img,
+        'img_warning': img_warning,
         'summary': fields.get('SUMMARY', ''),
         'period': period,
         'status': status,
@@ -113,7 +156,7 @@ def run():
     for index, content_file in enumerate(txt_files):
         slug = slugify(content_file)
         raw = open(os.path.join(CONTENT_DIR, content_file), 'r', encoding='utf-8').read()
-        data = parse_txt(raw, index)
+        data = parse_txt(raw, index, slug)
 
         if not data['body']:
             print(f"  ⚠️  No **Heading** sections found in {content_file}")
@@ -122,7 +165,11 @@ def run():
             print(f"  ⚠️  No TITLE field in {content_file} — skipping")
             continue
         if not data['img']:
-            print(f"  ⚠️  No IMAGE field in {content_file} — card image will be blank")
+            print(f"  ⚠️  No image found for {content_file} — card image will be blank")
+        elif data.get('img_warning'):
+            print(f"  ⚠️  {content_file}: {data['img_warning']}")
+
+        data.pop('img_warning', None)
 
         out_path = os.path.join(PROJECTS_DIR, f'{slug}.json')
         with open(out_path, 'w', encoding='utf-8') as f:
