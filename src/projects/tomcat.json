@@ -36,6 +36,13 @@
     "ACM SSL with automatic certificate renewal — zero manual certificate management",
     "Fully serverless — zero fixed infrastructure cost between events"
   ],
+  "collaborators": [
+    "Nunoo Annah Frimpomaah",
+    "Peter Nartey",
+    "Emmanuel Akatse",
+    "Samuel Kingsford Amoah",
+    "Salu Alhassan"
+  ],
   "body": [
     {
       "heading": "What Was Built",
@@ -51,7 +58,7 @@
     },
     {
       "heading": "What Broke and How Did I Fix It",
-      "text": "During system testing and infrastructure deployment, several critical architectural hurdles were encountered and resolved. A major initial issue involved permission errors and HTTP 403 Access Denied responses when accessing static web assets through CloudFront. This was caused by legacy S3 bucket policies expecting an Origin Access Identity (OAI) rather than the newer Origin Access Control (OAC) standard, which was fixed by updating the CloudFront distribution to use OAC, modifying the S3 bucket policy to explicitly restrict `s3:GetObject` access strictly to the CloudFront Service Principal, and disabling public access. Additionally, early Lambda executions for document parsing experienced timeouts when processing larger payload sizes, which was resolved by tuning the Lambda function memory allocation and optimizing the memory-to-CPU ratio to accelerate parsing tasks. Finally, initial DynamoDB write operations during registration spikes triggered intermittent write throttling errors, which was addressed by configuring dynamic auto-scaling policies on the DynamoDB table throughput metrics and establishing CloudWatch alarm thresholds to proactively catch throttled requests before impacting end users. COLLABORATORS: - Nunoo Annah Frimpomaah - Peter Nartey - Emmanuel Akatse - Samuel Kingsford Amoah - Salu Alhassan ---"
+      "text": "During system testing and infrastructure deployment, several critical architectural hurdles were encountered and resolved. A major initial issue involved permission errors and HTTP 403 Access Denied responses when accessing static web assets through CloudFront. This was caused by legacy S3 bucket policies expecting an Origin Access Identity (OAI) rather than the newer Origin Access Control (OAC) standard, which was fixed by updating the CloudFront distribution to use OAC, modifying the S3 bucket policy to explicitly restrict `s3:GetObject` access strictly to the CloudFront Service Principal, and disabling public access. Additionally, early Lambda executions for document parsing experienced timeouts when processing larger payload sizes, which was resolved by tuning the Lambda function memory allocation and optimizing the memory-to-CPU ratio to accelerate parsing tasks. Finally, initial DynamoDB write operations during registration spikes triggered intermittent write throttling errors, which was addressed by configuring dynamic auto-scaling policies on the DynamoDB table throughput metrics and establishing CloudWatch alarm thresholds to proactively catch throttled requests before impacting end users."
     }
   ],
   "sort_key": [

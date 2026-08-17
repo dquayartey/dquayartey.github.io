@@ -37,6 +37,13 @@
     "CloudFront OAC + ACM SSL for secure, globally distributed frontend delivery",
     "Zero-idle serverless architecture — cost scales linearly with actual usage"
   ],
+  "collaborators": [
+    "Nunoo Annah Frimpomaah",
+    "Peter Nartey",
+    "Emmanuel Akatse",
+    "Samuel Kingsford Amoah",
+    "Salu Alhassan"
+  ],
   "body": [
     {
       "heading": "What Was Built",
@@ -52,7 +59,7 @@
     },
     {
       "heading": "What Broke and How Did I Fix It",
-      "text": "During development and pipeline integration, several critical architectural and operational blockers emerged. Early CI/CD pipeline runs failed during deployment due to invalid GitHub Actions OIDC trust relationship configurations where the IAM role assumed by GitHub Actions lacked the exact repository subject claims needed for federated access. This was fixed by scoping the IAM trust policy strictly to the repository's GitHub OIDC provider string, granting temporary, least-privilege credentials for CloudFormation deployments. Initial multi-turn prompt tests resulted in loss of conversation history across API calls due to unindexed session query patterns in DynamoDB, which was resolved by restructuring the DynamoDB table schema with a composite primary key using the user identity as the partition key and adjusting the Lambda query logic to retrieve ordered session arrays prior to invoking Groq. Deploying the static frontend generated HTTP 403 Forbidden errors when accessing pages through CloudFront because of legacy S3 bucket policies attempting to use Origin Access Identity instead of OAC. This was resolved by migrating the distribution configuration to Origin Access Control, updating the S3 bucket policy to explicitly grant access only to the CloudFront Service Principal, and completely blocking public access to the bucket. Finally, early AWS SAM template deployments risked printing raw API keys inside CloudFormation stack traces, which was secured by refactoring deployment templates to mark sensitive inputs with NoEcho flags and passing keys securely via GitHub Secrets during execution. COLLABORATORS: - Nunoo Annah Frimpomaah - Peter Nartey - Emmanuel Akatse - Samuel Kingsford Amoah - Salu Alhassan ---"
+      "text": "During development and pipeline integration, several critical architectural and operational blockers emerged. Early CI/CD pipeline runs failed during deployment due to invalid GitHub Actions OIDC trust relationship configurations where the IAM role assumed by GitHub Actions lacked the exact repository subject claims needed for federated access. This was fixed by scoping the IAM trust policy strictly to the repository's GitHub OIDC provider string, granting temporary, least-privilege credentials for CloudFormation deployments. Initial multi-turn prompt tests resulted in loss of conversation history across API calls due to unindexed session query patterns in DynamoDB, which was resolved by restructuring the DynamoDB table schema with a composite primary key using the user identity as the partition key and adjusting the Lambda query logic to retrieve ordered session arrays prior to invoking Groq. Deploying the static frontend generated HTTP 403 Forbidden errors when accessing pages through CloudFront because of legacy S3 bucket policies attempting to use Origin Access Identity instead of OAC. This was resolved by migrating the distribution configuration to Origin Access Control, updating the S3 bucket policy to explicitly grant access only to the CloudFront Service Principal, and completely blocking public access to the bucket. Finally, early AWS SAM template deployments risked printing raw API keys inside CloudFormation stack traces, which was secured by refactoring deployment templates to mark sensitive inputs with NoEcho flags and passing keys securely via GitHub Secrets during execution."
     }
   ],
   "sort_key": [

@@ -35,6 +35,13 @@
     "NAT Gateway-enabled outbound access for private instances without public exposure",
     "Health check tuning for reliable rolling instance registration under load"
   ],
+  "collaborators": [
+    "Nunoo Annah Frimpomaah",
+    "Peter Nartey",
+    "Emmanuel Akatse",
+    "Samuel Kingsford Amoah",
+    "Salu Alhassan"
+  ],
   "body": [
     {
       "heading": "What Was Built",

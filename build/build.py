@@ -45,6 +45,7 @@ def make_detail_content(data):
     )
     highlights_html = ''.join(f'<li>{h}</li>' for h in data['highlights'])
     tags_html = ''.join(f'<span class="modal-tag">{t}</span>' for t in data['tags'])
+    collaborators_html = ''.join(f'<span class="modal-tag">{c}</span>' for c in data.get('collaborators', []))
     status_badge = make_status_badge(data['status'])
     period_html = f'<span class="detail-period">{data["period"]}</span>' if data['period'] else ''
 
@@ -63,6 +64,7 @@ def make_detail_content(data):
     {body_html}
   </div>
   {f'<div class="modal-section"><div class="modal-section-title">Key Highlights</div><ul class="modal-highlights">{highlights_html}</ul></div>' if highlights_html else ''}
+  {f'<div class="modal-section"><div class="modal-section-title">Collaborators</div><div class="modal-tags">{collaborators_html}</div></div>' if collaborators_html else ''}
   {f'<div class="modal-section"><div class="modal-section-title">Tech Stack</div><div class="modal-tags">{tags_html}</div></div>' if tags_html else ''}
 </article>'''
 

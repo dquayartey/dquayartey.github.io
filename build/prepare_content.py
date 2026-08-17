@@ -46,6 +46,7 @@ def parse_txt(raw, fallback_index):
     header_part, _, body_part = raw.partition('\n---\n')
     fields = {}
     highlights = []
+    collaborators = []
     lines = header_part.split('\n')
     i = 0
     while i < len(lines):
@@ -57,6 +58,12 @@ def parse_txt(raw, fallback_index):
             i += 1
             while i < len(lines) and lines[i].strip().startswith('-'):
                 highlights.append(lines[i].strip().lstrip('-').strip())
+                i += 1
+            continue
+        if line.upper().startswith('COLLABORATORS:'):
+            i += 1
+            while i < len(lines) and lines[i].strip().startswith('-'):
+                collaborators.append(lines[i].strip().lstrip('-').strip())
                 i += 1
             continue
         m = re.match(r'^([A-Z_]+):\s*(.*)$', line)
@@ -86,6 +93,7 @@ def parse_txt(raw, fallback_index):
         'actions': actions,
         'tags': tags,
         'highlights': highlights,
+        'collaborators': collaborators,
         'body': parse_sections(body_part),
         'sort_key': parse_period_end(period, status),
         # kept as a stable tiebreaker for projects with identical/missing periods
