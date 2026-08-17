@@ -2,7 +2,7 @@
   "title": "CampusAI — Serverless AI Support Assistant",
   "img": "assets/projects/campusai.jpg",
   "summary": "A 24/7 zero-idle serverless student support application delivering multi-turn conversation memory using Groq (Llama 3.3 70B), Python AWS Lambda, API Gateway, and DynamoDB. Deployed via OIDC GitHub Actions pipelines with no long-lived credentials.",
-  "period": "Jan 2026 – Mar 2026",
+  "period": "Aug 2026 – Aug 2026",
   "status": "completed",
   "actions": [
     {
@@ -57,7 +57,7 @@
   ],
   "sort_key": [
     2026,
-    3
+    8
   ],
   "fallback_index": 1
 }

@@ -2,8 +2,8 @@ TITLE: MachGold Portfolio Aggregator — Multi-Asset Backtest Simulation Tool
 IMAGE: assets/projects/machgold-aggregator.jpg
 SUMMARY: A custom C# cTrader plugin and simulation engine that ingests JSON backtest exports to model real-world shared-capital drawdown, chronological trade overlap, and account state transitions across multiple assets.
 TAGS: C#, .NET, cTrader Plugin API, JSON Parsing, Portfolio Simulation, Event-Driven Architecture, Backtesting Analysis
-PERIOD: Mar 2026 – Aug 2026
-STATUS: active
+PERIOD: Jul 2026 – Aug 2026
+STATUS: completed
 DEMO_URL: https://github.com/dquayartey/cTrader-codes
 REPO_URL: https://github.com/dquayartey/cTrader-codes
 HIGHLIGHTS:

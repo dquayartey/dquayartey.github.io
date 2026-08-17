@@ -2,7 +2,7 @@ TITLE: Tomcat Events — Event Ticketing Platform
 IMAGE: assets/projects/tomcat.jpg
 SUMMARY: A serverless event registration platform featuring automated ID parsing workflows, Amazon S3 static hosting secured via CloudFront OAC, ACM SSL end-to-end encryption, and proactive CloudWatch operational alarms.
 TAGS: AWS SAM, API Gateway, AWS Lambda, Amazon S3, CloudFront (OAC), ACM SSL, CloudWatch Alarms, Python, Serverless
-PERIOD: Aug 2026 – Aug 2026
+PERIOD: Jul 2026 – Jul 2026
 STATUS: completed
 DEMO_URL: https://www.tomcateventslimited.site/
 REPO_URL: https://github.com/dquayartey/tomcat-event-ticketing

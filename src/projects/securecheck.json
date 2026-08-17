@@ -3,7 +3,7 @@
   "img": "assets/projects/securecheck-diagnostic.jpg",
   "summary": "A serverless web application combining a GitHub Pages frontend with a Google Apps Script API to deliver real-time risk assessments, automated lead logging, and consultation scheduling.",
   "period": "Jun 2026 – Aug 2026",
-  "status": "active",
+  "status": "completed",
   "actions": [
     {
       "label": "Live Demo",

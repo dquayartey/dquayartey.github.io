@@ -2,7 +2,7 @@ TITLE: MachGold — Multi-Asset Algorithmic Trading System
 IMAGE: assets/projects/machgold.jpg
 SUMMARY: A multi-asset algorithmic trading bot written in C# for cTrader, combining EMA trend detection, Stochastic/RSI momentum confirmation, and ATR volatility-based risk management across forex pairs and indices.
 TAGS: C#, cTrader API, cAlgo, MQL5, Pine Script, Algorithmic Trading, Backtesting, Automated Risk Management
-PERIOD: Mar 2026 – Aug 2026
+PERIOD: Aug 2026 – Aug 2026
 STATUS: active
 DEMO_URL: https://github.com/dquayartey/cTrader-codes
 REPO_URL: https://github.com/dquayartey/cTrader-codes
