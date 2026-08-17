@@ -2,7 +2,7 @@
   "title": "Envestorr SecureCheck — Cybersecurity Diagnostic Tool",
   "img": "assets/projects/securecheck-diagnostic.jpg",
   "summary": "A serverless web application combining a GitHub Pages frontend with a Google Apps Script API to deliver real-time risk assessments, automated lead logging, and consultation scheduling.",
-  "period": "Jun 2026 – Aug 2026",
+  "period": "Jun 2026 – Jun 2026",
   "status": "completed",
   "actions": [
     {
@@ -49,7 +49,7 @@
   ],
   "sort_key": [
     2026,
-    8
+    6
   ],
   "fallback_index": 4
 }

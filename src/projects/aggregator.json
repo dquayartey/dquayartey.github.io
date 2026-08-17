@@ -2,7 +2,7 @@
   "title": "MachGold Portfolio Aggregator — Multi-Asset Backtest Simulation Tool",
   "img": "assets/projects/machgold-aggregator.jpg",
   "summary": "A custom C# cTrader plugin and simulation engine that ingests JSON backtest exports to model real-world shared-capital drawdown, chronological trade overlap, and account state transitions across multiple assets.",
-  "period": "Jul 2026 – Aug 2026",
+  "period": "Jul 2026 – Jul 2026",
   "status": "completed",
   "actions": [
     {
@@ -48,7 +48,7 @@
   ],
   "sort_key": [
     2026,
-    8
+    7
   ],
   "fallback_index": 0
 }
