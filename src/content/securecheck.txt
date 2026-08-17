@@ -1,5 +1,5 @@
 TITLE: Envestorr SecureCheck — Cybersecurity Diagnostic Tool
-IMAGE: assets/projects/securecheck-diagnostic.jpg
+IMAGE: assets/projects/securecheck.jpg
 SUMMARY: A serverless web application combining a GitHub Pages frontend with a Google Apps Script API to deliver real-time risk assessments, automated lead logging, and consultation scheduling.
 TAGS: HTML5, CSS3, JavaScript, Google Apps Script, REST API, Calendly API, Google Sheets API, Serverless Architecture
 PERIOD: Jun 2026 – Jun 2026
