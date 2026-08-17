@@ -118,13 +118,17 @@ def build_site():
     cards = []
     if os.path.exists(projects_dir):
         json_files = [f for f in os.listdir(projects_dir) if f.endswith('.json')]
-        json_files.sort(key=lambda f: json.load(open(os.path.join(projects_dir, f), encoding='utf-8'))['order'])
-
+        loaded = []
         for f in json_files:
-            slug = slugify(f)
             with open(os.path.join(projects_dir, f), 'r', encoding='utf-8') as jf:
-                data = json.load(jf)
+                loaded.append((f, json.load(jf)))
 
+        # Most recent completion first. Ties (e.g. same end month, or two
+        # ongoing projects) fall back to fallback_index for a stable order.
+        loaded.sort(key=lambda pair: (pair[1]['sort_key'], -pair[1].get('fallback_index', 0)), reverse=True)
+
+        for f, data in loaded:
+            slug = slugify(f)
             cards.append(make_card(card_template, data, slug))
 
             detail_content = make_detail_content(data)

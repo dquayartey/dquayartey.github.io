@@ -47,5 +47,9 @@
       "text": "Building a serverless web app across GitHub Pages and Google Apps Script introduced specific cross-origin and data-handling hurdles. The primary issue was handling Cross-Origin Resource Sharing (CORS) preflight checks, as standard `fetch` POST requests with `Content-Type: application/json` were blocked by browser security policies when sending data to Google Apps Script web apps. This was resolved by reconfiguring the client-side request to send raw text stringified payloads using `text/plain` headers, allowing the script's `doPost(e)` handler to parse `e.postData.contents` into a JSON object server-side without triggering preflight blocks. Additionally, early backend scripts suffered from concurrent write lock errors when multiple responses arrived simultaneously; this was resolved by implementing Google Apps Script's `LockService` API (`LockService.getScriptLock()`) to enforce thread-safe execution during Google Sheets append operations. Finally, layout responsiveness issues with the embedded Calendly iframe on mobile viewports were resolved by wrapping the widget in a CSS flexbox container with adaptive height scaling."
     }
   ],
-  "order": 4
+  "sort_key": [
+    2026,
+    8
+  ],
+  "fallback_index": 4
 }

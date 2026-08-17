@@ -47,5 +47,9 @@
       "text": "During development and live cloud deployment, several technical and risk-management challenges emerged. Early multi-asset backtests revealed that a single global set of confirmation parameters caused severe over-trading on volatile indices while missing valid entries on major forex pairs. This was fixed by refactoring the codebase to support independently tunable indicator thresholds and ATR multipliers mapped to specific asset classes. In live testing on a funded prop trading account, sudden geopolitical volatility (such as US–Iran tensions) caused elevated drawdown when market gaps bypassed standard entry filters. This was addressed by implementing an automated news and volatility guardrail that tightens entry criteria or pauses new order generation during high-impact economic events. Finally, multi-chart execution on cTrader cloud instances initially encountered tick-processing race conditions across 14 simultaneously monitored assets, which was resolved by optimizing event-handling loops and implementing explicit thread safety for state synchronization across chart objects."
     }
   ],
-  "order": 3
+  "sort_key": [
+    2026,
+    8
+  ],
+  "fallback_index": 3
 }

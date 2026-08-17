@@ -46,5 +46,9 @@
       "text": "Developing an event-driven multi-asset aggregator introduced several algorithmic and data alignment challenges. Initial simulation runs produced inaccurate drawdown figures because trade execution timestamps exported from different chart timeframes exhibited slight millisecond clock skew and out-of-order array structures. This was fixed by implementing a custom timeline sorting algorithm utilizing a min-heap priority queue, ensuring every trade open and close event was evaluated in absolute chronological order regardless of export source. Additionally, early versions caused memory bottlenecks when parsing large historical tick and trade logs across a dozen assets, which was resolved by refactoring the JSON ingestion pipeline to stream records iteratively using `System.Text.Json` instead of loading entire datasets into memory. Finally, edge-case discrepancies occurred when handling simultaneous close-and-open events on the same timestamp, which was corrected by prioritizing position close events over new position entries to reflect immediate balance availability accurately."
     }
   ],
-  "order": 0
+  "sort_key": [
+    2026,
+    8
+  ],
+  "fallback_index": 0
 }
