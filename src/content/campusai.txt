@@ -4,7 +4,7 @@ SUMMARY: A 24/7 zero-idle serverless student support application delivering mult
 TAGS: AWS SAM, AWS Lambda, API Gateway, Amazon DynamoDB, Amazon Cognito, Amazon CloudFront, Amazon S3, Groq AI (Llama 3.3 70B), GitHub Actions (OIDC), Python 3.12
 PERIOD: Aug 2026 – Aug 2026
 STATUS: completed
-DEMO_URL: https://campusai.site
+DEMO_URL: https://youtu.be/UV6y-grD64w
 REPO_URL: https://github.com/dquayartey/tomcat-student-support-ai-api
 HIGHLIGHTS:
 - Multi-turn conversation memory with DynamoDB-backed chat thread persistence
