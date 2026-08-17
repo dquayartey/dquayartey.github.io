@@ -4,8 +4,8 @@ SUMMARY: A custom C# cTrader plugin and simulation engine that ingests JSON back
 TAGS: C#, .NET, cTrader Plugin API, JSON Parsing, Portfolio Simulation, Event-Driven Architecture, Backtesting Analysis
 PERIOD: Mar 2026 – Aug 2026
 STATUS: active
-DEMO_URL: [https://github.com/dquayartey/cTrader-codes](https://github.com/dquayartey/cTrader-codes)
-REPO_URL: [https://github.com/dquayartey/cTrader-codes](https://github.com/dquayartey/cTrader-codes)
+DEMO_URL: https://github.com/dquayartey/cTrader-codes
+REPO_URL: https://github.com/dquayartey/cTrader-codes
 HIGHLIGHTS:
 
 * Priority-ordered event-driven engine reconstructing multi-asset trades in strict chronological sequence

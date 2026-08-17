@@ -7,13 +7,13 @@
   "actions": [
     {
       "label": "Live Demo",
-      "url": "[https://github.com/dquayartey/cTrader-codes](https://github.com/dquayartey/cTrader-codes)",
+      "url": "https://github.com/dquayartey/cTrader-codes",
       "icon": "fa-solid fa-arrow-up-right-from-square",
       "primary": true
     },
     {
       "label": "Repository",
-      "url": "[https://github.com/dquayartey/cTrader-codes](https://github.com/dquayartey/cTrader-codes)",
+      "url": "https://github.com/dquayartey/cTrader-codes",
       "icon": "fa-brands fa-github",
       "primary": false
     }
